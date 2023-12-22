@@ -14,3 +14,6 @@ app.get("/api", (req, res) => {
 })
 const menuRouter = require("./routes/menu");
 app.use("/api/menu", menuRouter);
+app.get("*", (req, res) => {
+    res.sendStatus(404);
+})
