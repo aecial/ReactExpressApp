@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
+const menuController = require("../controllers/menuController");
 
-router.route("/").get((req, res) => {
-    res.json({ romr: "Menu"});
-})
+router.route("/").get(menuController.getAllItems);
+
 const foodRouter = require("./food");
 router.use("/food", foodRouter);
 

@@ -9,3 +9,25 @@ datasource db {
   provider = "mysql"
   url      = env("DATABASE_URL")
 }
+model Menu {
+  id Int @id @default(autoincrement())
+  image String @unique
+  name String @unique
+  type Type
+  class Class @default(FOOD)
+}
+enum Class {
+  FOOD
+  DRINK
+  OTHERS
+}
+enum Type {
+  ITIK
+  PORK
+  BEEF
+  CHICKEN
+  SEAFOODS
+  VEGETABLES
+  DRINK
+  OTHERS
+}
