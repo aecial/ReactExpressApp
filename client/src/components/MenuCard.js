@@ -1,10 +1,10 @@
-const MenuCard = ({ key, imgSrc, title, price }) => {
+const MenuCard = ({ imgSrc, title, price }) => {
   return (
     <div className=" border-2 border-black w-40 h-40 rounded-lg">
       <img
         className=" object-cover w-20 h-20 relative left-10 -top-7 rounded-full"
         src={imgSrc}
-        alt="Item Image"
+        alt={title}
       />
       <div className="text-center relative -top-6">
         <h1 className="text-2xl">{title}</h1>
