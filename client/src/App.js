@@ -1,18 +1,23 @@
-import { useState, useEffect } from "react";
+import logo from './logo.svg';
+import './App.css';
+
 function App() {
-  const [backEndData, setBackEndData] = useState([{}]);
-  useEffect(() => {
-    fetch("/api/menu")
-      .then((response) => response.json())
-      .then((data) => setBackEndData(data));
-  }, []);
   return (
-    <div>
-      {typeof backEndData === "undefined" ? (
-        <p>Loading...</p>
-      ) : (
-        backEndData.map((item) => <p key={item.id}>{item.name}</p>)
-      )}
+    <div className="App">
+      <header className="App-header">
+        <img src={logo} className="App-logo" alt="logo" />
+        <p>
+          Edit <code>src/App.js</code> and save to reload.
+        </p>
+        <a
+          className="App-link"
+          href="https://reactjs.org"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Learn React
+        </a>
+      </header>
     </div>
   );
 }
