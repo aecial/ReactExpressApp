@@ -8,28 +8,36 @@ function App() {
   const [cartItem, setCartItem] = useState([]);
 
   function addToCart(name, price) {
+    // Increment cart item counter
     setCartCounter((count) => count + 1);
+    // Checks if the item is inside the array already
     const isFound = cartItem.some((el) => {
       if (el.name === name) {
+        // return true if found
         return true;
       } else {
+        // return false if not
         return false;
       }
     });
+    // if the item is in the array
     if (isFound) {
+      // map the current array and find the name that matches the name parameter
+      // then return the item using the spread operator where the price
+      // is the newly updated price
       setCartItem((current) => {
         return current.map((item) => {
           if (item.name === name) {
             const newPrice = price + item.price;
             return { ...item, price: newPrice };
           }
-
+          // if the name does not match, just return the item
           return item;
         });
       });
+      // else set the cart Item to a new object in the array
     } else {
       setCartItem((current) => [...current, { name, price }]);
-      console.log(cartItem);
     }
   }
   useEffect(() => {
@@ -60,7 +68,7 @@ function App() {
             imgSrc={item.image}
             title={item.name}
             price={item.price}
-            btnFunc={(e) => addToCart(item.name, item.price)}
+            btnFunc={() => addToCart(item.name, item.price)}
           />
         ))}
       </div>
