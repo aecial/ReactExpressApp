@@ -7,7 +7,7 @@ function App() {
   const [isOpen, setIsOpen] = useState(false);
   const [cartItem, setCartItem] = useState([]);
 
-  function addToCart(name, price) {
+  function addToCart(qty, name, price) {
     // Increment cart item counter
     setCartCounter((count) => count + 1);
     // Checks if the item is inside the array already
@@ -28,8 +28,9 @@ function App() {
       setCartItem((current) => {
         return current.map((item) => {
           if (item.name === name) {
+            const newQty = item.qty + 1;
             const newPrice = price + item.price;
-            return { ...item, price: newPrice };
+            return { ...item, qty: newQty, price: newPrice };
           }
           // if the name does not match, just return the item
           return item;
@@ -37,7 +38,7 @@ function App() {
       });
       // else set the cart Item to a new object in the array
     } else {
-      setCartItem((current) => [...current, { name, price }]);
+      setCartItem((current) => [...current, { qty, name, price }]);
     }
   }
   useEffect(() => {
@@ -68,12 +69,13 @@ function App() {
             imgSrc={item.image}
             title={item.name}
             price={item.price}
-            btnFunc={() => addToCart(item.name, item.price)}
+            btnFunc={() => addToCart(1, item.name, item.price)}
           />
         ))}
       </div>
-      {cartItem.map((vals, i) => (
+      {cartItem.map((vals) => (
         <>
+          <p>{vals.qty}</p>
           <p>{vals.name}</p>
           <p>{vals.price}</p>
         </>
