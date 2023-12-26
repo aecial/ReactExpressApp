@@ -182,10 +182,9 @@ function App() {
                 <div className="text-2xl flex justify-between px-5">
                   TOTAL:
                   <span id="totalPrice">
-                    {cartItem.forEach((item) => {
-                      total += item.price;
-                    })}
-                    {total}
+                    {cartItem.reduce((total, item) => {
+                      return total + item.price;
+                    }, 0)}
                   </span>
                 </div>
               </div>
