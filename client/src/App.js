@@ -93,9 +93,11 @@ function App() {
             >
               <h2 className="text-end">
                 ITEMS:{" "}
-                {cartItem.reduce((count, item) => {
-                  return count + item.qty;
-                }, 0)}
+                <span className="underline">
+                  {cartItem.reduce((count, item) => {
+                    return count + item.qty;
+                  }, 0)}
+                </span>
               </h2>
               <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
                 <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
