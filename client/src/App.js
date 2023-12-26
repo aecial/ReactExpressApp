@@ -6,7 +6,6 @@ function App() {
   const [cartCounter, setCartCounter] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
   const [cartItem, setCartItem] = useState([]);
-  let total = 0;
 
   function addToCart(qty, name, price) {
     // Increment cart item counter
