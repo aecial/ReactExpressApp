@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
 import MenuCard from "./components/MenuCard";
-import Cart from "./pages/Cart";
 function App() {
   const [backEndData, setBackEndData] = useState([{}]);
   const [cartCounter, setCartCounter] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
   const [cartItem, setCartItem] = useState([]);
+  const tableHeaders = ["Product Name", "Quantity", "Price", "Action"];
 
   function addToCart(qty, name, price) {
     // Increment cart item counter
@@ -104,18 +104,11 @@ function App() {
                 <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                   <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                     <tr>
-                      <th scope="col" className="px-6 py-3">
-                        Product name
-                      </th>
-                      <th scope="col" className="px-6 py-3">
-                        Quantity
-                      </th>
-                      <th scope="col" className="px-6 py-3">
-                        Price
-                      </th>
-                      <th scope="col" className="px-6 py-3">
-                        Action
-                      </th>
+                      {tableHeaders.map((header) => (
+                        <th scope="col" className="px-6 py-3">
+                          {header}
+                        </th>
+                      ))}
                     </tr>
                   </thead>
                   <tbody>
@@ -128,8 +121,8 @@ function App() {
                           >
                             {vals.name}
                           </th>
-                          <td className="px-6 py-4">{vals.qty}</td>
-                          <td className="px-6 py-4">{vals.price}</td>
+                          <td className="px-6 py-4 text-white">{vals.qty}</td>
+                          <td className="px-6 py-4 text-white">{vals.price}</td>
                           <td className="px-6 py-4">
                             <button className="font-medium text-red-600 hover:underline">
                               Delete
