@@ -2,14 +2,11 @@ import { useState, useEffect } from "react";
 import MenuCard from "./components/MenuCard";
 function App() {
   const [backEndData, setBackEndData] = useState([{}]);
-  const [cartCounter, setCartCounter] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
   const [cartItem, setCartItem] = useState([]);
   const tableHeaders = ["Product Name", "Quantity", "Price", "Action"];
 
   function addToCart(qty, name, price) {
-    // Increment cart item counter
-    setCartCounter((count) => count + 1);
     // Checks if the item is inside the array already
     const isFound = cartItem.some((el) => {
       if (el.name === name) {
@@ -58,7 +55,9 @@ function App() {
           <span className="hidden"></span>
         ) : (
           <span className="inline-flex items-center justify-center w-4 h-4 ms-2 text-xs font-semibold text-blue-800 bg-blue-200 rounded-full">
-            {cartCounter}
+            {cartItem.reduce((count, item) => {
+              return count + item.qty;
+            }, 0)}
           </span>
         )}
       </button>
@@ -73,13 +72,6 @@ function App() {
           />
         ))}
       </div>
-      {/* {cartItem.map((vals) => (
-        <>
-          <p>{vals.qty}</p>
-          <p>{vals.name}</p>
-          <p>{vals.price}</p>
-        </>
-      ))} */}
       {isOpen ? (
         <div
           id="ModelContainer"
@@ -99,7 +91,12 @@ function App() {
               id="div-body"
               className="w-full  p-3 justify-center items-center"
             >
-              <h2 className="text-end">ITEMS: {cartCounter}</h2>
+              <h2 className="text-end">
+                ITEMS:{" "}
+                {cartItem.reduce((count, item) => {
+                  return count + item.qty;
+                }, 0)}
+              </h2>
               <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
                 <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                   <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -131,44 +128,6 @@ function App() {
                         </tr>
                       </>
                     ))}
-
-                    {/* <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
-                      <th
-                        scope="row"
-                        class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-                      >
-                        Apple MacBook Pro 17"
-                      </th>
-                      <td class="px-6 py-4">Silver</td>
-                      <td class="px-6 py-4">$2999</td>
-                      <td class="px-6 py-4">
-                        <a
-                          href="#"
-                          class="font-medium text-red-600 hover:underline"
-                        >
-                          Delete
-                        </a>
-                      </td>
-                    </tr> */}
-                    {/* <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
-                    <th
-                      scope="row"
-                      class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-                    >
-                      Apple MacBook Pro 17"
-                    </th>
-                    <td class="px-6 py-4">Silver</td>
-                    <td class="px-6 py-4">Laptop</td>
-                    <td class="px-6 py-4">$2999</td>
-                    <td class="px-6 py-4">
-                      <a
-                        href="#"
-                        class="font-medium text-red-600 hover:underline"
-                      >
-                        Delete
-                      </a>
-                    </td>
-                  </tr> */}
                   </tbody>
                 </table>
                 <div className="text-2xl flex justify-between px-5">
