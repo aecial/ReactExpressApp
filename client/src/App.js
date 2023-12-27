@@ -38,6 +38,19 @@ function App() {
       setCartItem((current) => [...current, { qty, name, price }]);
     }
   }
+  function removeFromCart(index) {
+    cartItem.splice(index, 1);
+    let totalPrice = document.getElementById("totalPrice");
+    let totalCount = document.getElementById("totalCount");
+    let table = document.getElementById("cartTable");
+    table.deleteRow(index + 1);
+    totalPrice.innerHTML = cartItem.reduce((total, item) => {
+      return total + item.price;
+    }, 0);
+    totalCount.innerHTML = cartItem.reduce((count, item) => {
+      return count + item.qty;
+    }, 0);
+  }
   useEffect(() => {
     fetch("/api/menu")
       .then((response) => response.json())
@@ -93,14 +106,17 @@ function App() {
             >
               <h2 className="text-end">
                 ITEMS:{" "}
-                <span className="underline">
+                <span id="totalCount" className="underline">
                   {cartItem.reduce((count, item) => {
                     return count + item.qty;
                   }, 0)}
                 </span>
               </h2>
               <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
-                <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                <table
+                  id="cartTable"
+                  className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400"
+                >
                   <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                     <tr>
                       {tableHeaders.map((header) => (
@@ -111,9 +127,12 @@ function App() {
                     </tr>
                   </thead>
                   <tbody>
-                    {cartItem.map((vals) => (
+                    {cartItem.map((vals, i) => (
                       <>
-                        <tr className="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
+                        <tr
+                          id={`btn-${i}Div`}
+                          className="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700"
+                        >
                           <th
                             scope="row"
                             className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
@@ -123,7 +142,11 @@ function App() {
                           <td className="px-6 py-4 text-white">{vals.qty}</td>
                           <td className="px-6 py-4 text-white">{vals.price}</td>
                           <td className="px-6 py-4">
-                            <button className="font-medium text-red-600 hover:underline">
+                            <button
+                              id={`btn-${i}`}
+                              onClick={() => removeFromCart(i)}
+                              className="font-medium text-red-600 hover:underline"
+                            >
                               Delete
                             </button>
                           </td>
