@@ -38,18 +38,16 @@ function App() {
       setCartItem((current) => [...current, { qty, name, price }]);
     }
   }
-  function removeFromCart(index) {
-    cartItem.splice(index, 1);
-    let totalPrice = document.getElementById("totalPrice");
-    let totalCount = document.getElementById("totalCount");
-    let table = document.getElementById("cartTable");
-    table.deleteRow(index + 1);
-    totalPrice.innerHTML = cartItem.reduce((total, item) => {
-      return total + item.price;
-    }, 0);
-    totalCount.innerHTML = cartItem.reduce((count, item) => {
-      return count + item.qty;
-    }, 0);
+  function removeFromCart(index, name) {
+    setCartItem((current) => {
+      return current.map((item) => {
+        if (item.name === name) {
+          return [...current, current.splice(index, 1)];
+        }
+        // if the name does not match, just return the item
+        return item;
+      });
+    });
   }
   useEffect(() => {
     fetch("/api/menu")
@@ -114,7 +112,7 @@ function App() {
               </h2>
               <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
                 <table
-                  id="cartTable"
+                  // id="cartTable"
                   className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400"
                 >
                   <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -126,7 +124,7 @@ function App() {
                       ))}
                     </tr>
                   </thead>
-                  <tbody>
+                  <tbody id="cartTable">
                     {cartItem.map((vals, i) => (
                       <>
                         <tr
@@ -144,7 +142,7 @@ function App() {
                           <td className="px-6 py-4">
                             <button
                               id={`btn-${i}`}
-                              onClick={() => removeFromCart(i)}
+                              onClick={() => removeFromCart(i, vals.name)}
                               className="font-medium text-red-600 hover:underline"
                             >
                               Delete
