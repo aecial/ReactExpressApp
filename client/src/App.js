@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import html2canvas from "html2canvas";
 import MenuCard from "./components/MenuCard";
 function App() {
   const [backEndData, setBackEndData] = useState([{}]);
@@ -49,6 +50,21 @@ function App() {
       });
     });
   }
+  function screenshot() {
+    const element = document.getElementById("ModelContainer");
+    if (!element) {
+      return;
+    }
+    html2canvas(element).then((canvas) => {
+      let image = canvas.toDataURL("image/jpeg");
+      console.log(image);
+      let rand = Math.floor(Math.random() * 1000000000);
+      const a = document.createElement("a");
+      a.href = image;
+      a.download = `MyOrder-${rand}.jpeg`;
+      a.click();
+    });
+  }
   useEffect(() => {
     fetch("/api/menu")
       .then((response) => response.json())
@@ -88,7 +104,7 @@ function App() {
           id="ModelContainer"
           className="fixed inset-0 h-full text-black bg-black flex justify-center items-center bg-opacity-20 backdrop-blur-sm"
         >
-          <div className="p-2 h-[80%] bg-white w-10/12 md:w-1/2 lg:1/3 shadow-inner border-e-emerald-600 rounded-lg py-5">
+          <div className="p-2 h-[80%] overflow-y-scroll bg-white w-10/12 md:w-1/2 lg:1/3 shadow-inner border-e-emerald-600 rounded-lg py-5">
             <button
               className="relative left-[95%]"
               onClick={() => setIsOpen(false)}
@@ -110,7 +126,10 @@ function App() {
                   }, 0)}
                 </span>
               </h2>
-              <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+              <div
+                id="orderContainer"
+                className="relative overflow-x-auto shadow-md sm:rounded-lg"
+              >
                 <table
                   // id="cartTable"
                   className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400"
@@ -161,6 +180,10 @@ function App() {
                     }, 0)}
                   </span>
                 </div>
+              </div>
+              <div className=" bg-amber-700 text-white flex justify-between p-4">
+                <button onClick={() => setCartItem([])}>CANCEL</button>
+                <button onClick={screenshot}>SAVE</button>
               </div>
             </div>
           </div>
