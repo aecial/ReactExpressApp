@@ -4,6 +4,7 @@ import MenuCard from "./components/MenuCard";
 import ButtonWithCounter from "./components/ButtonWithCounter";
 import MediumTitle from "./components/MediumTitle";
 import FunctionalityButton from "./components/FunctionalityButton";
+import { Button } from "@material-tailwind/react";
 function App() {
   const [backEndData, setBackEndData] = useState([{}]);
   const [isOpen, setIsOpen] = useState(false);
@@ -187,6 +188,7 @@ function App() {
       ) : (
         <span></span>
       )}
+      <Button className="bg-red-500">My Button</Button>
     </div>
   );
 }
