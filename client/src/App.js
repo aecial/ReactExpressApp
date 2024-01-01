@@ -1,3 +1,4 @@
+import { DrawerWithNavigation } from "./components/DrawerWithNavigation";
 import Title from "./components/Title";
 import { Button } from "@material-tailwind/react";
 function App() {
@@ -23,7 +24,7 @@ function App() {
           />
         </div>
         {/* HEADER */}
-        <div className="h-[45vh] flex flex-col justify-between">
+        <div className="h-[47vh] flex flex-col justify-between">
           <Title title={"EATIK BOY"} additionalClass={"mt-10"} />
           <div className="w-full">
             <ul className="text-lg flex flex-col gap-5 w-[45%] mx-auto">
@@ -32,16 +33,27 @@ function App() {
                 Tarlac, 2315
               </li>
               <li>
-                <i class="fa-solid fa-phone-volume"></i> 09982409945
+                <a href="tel:09982409945">
+                  <i class="fa-solid fa-phone-volume"></i>{" "}
+                  <span className="underline underline-offset-2">
+                    09982409945
+                  </span>
+                </a>
               </li>
               <li>
-                <i class="fa-brands fa-facebook"></i> @eatikboy
+                <a href="https://www.facebook.com">
+                  <i class="fa-brands fa-facebook"></i>{" "}
+                  <span className="underline underline-offset-2">
+                    @eatikboy
+                  </span>
+                </a>
               </li>
             </ul>
           </div>
           <Button className="w-[80%] mx-auto text-2xl">
             <i class="fa-solid fa-basket-shopping"></i> ORDER NOW
           </Button>
+          <DrawerWithNavigation />
         </div>
       </div>
     </main>
