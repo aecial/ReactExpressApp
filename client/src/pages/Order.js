@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import html2canvas from "html2canvas";
-import MenuCard from "./components/MenuCard";
-import ButtonWithCounter from "./components/ButtonWithCounter";
-import MediumTitle from "./components/MediumTitle";
-import FunctionalityButton from "./components/FunctionalityButton";
+import MenuCard from "../components/MenuCard";
+import ButtonWithCounter from "../components/ButtonWithCounter";
+import MediumTitle from "../components/MediumTitle";
+import FunctionalityButton from "../components/FunctionalityButton";
 import { Button } from "@material-tailwind/react";
 function Order() {
   const [backEndData, setBackEndData] = useState([{}]);

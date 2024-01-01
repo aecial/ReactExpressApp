@@ -10,8 +10,9 @@ import {
   Chip,
 } from "@material-tailwind/react";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
-export function DrawerWithNavigation() {
+export function DrawerWithNavigation({ hamburgerColor }) {
   const [open, setOpen] = useState(false);
   const openDrawer = () => setOpen(true);
   const closeDrawer = () => setOpen(false);
@@ -19,7 +20,11 @@ export function DrawerWithNavigation() {
   return (
     <>
       <button onClick={openDrawer} className="absolute top-2 right-3">
-        <i className="text-white text-2xl fa-solid fa-burger "></i>
+        <i
+          className={`text-${
+            hamburgerColor || "white"
+          } text-2xl fa-solid fa-burger`}
+        ></i>
       </button>
       <Drawer placement="right" open={open} onClose={closeDrawer}>
         <div className="mb-2 flex items-center justify-between p-4">
@@ -44,18 +49,18 @@ export function DrawerWithNavigation() {
           </IconButton>
         </div>
         <List>
-          <a href="/">
+          <Link to="/">
             <ListItem>
               <ListItemPrefix>
-                <i class="fa-solid fa-house-chimney"></i>
+                <i className="fa-solid fa-house-chimney"></i>
               </ListItemPrefix>
               Home
             </ListItem>
-          </a>
-          <a href="/about">
+          </Link>
+          <Link to="/about">
             <ListItem>
               <ListItemPrefix>
-                <i class="fa-solid fa-circle-info"></i>
+                <i className="fa-solid fa-circle-info"></i>
               </ListItemPrefix>
               About Us
               {/* <ListItemSuffix>
@@ -67,17 +72,22 @@ export function DrawerWithNavigation() {
                   />
                 </ListItemSuffix> */}
             </ListItem>
-          </a>
-          <ListItem>
-            <ListItemPrefix>
-              <i class="fa-solid fa-phone-volume"></i>
-            </ListItemPrefix>
-            Contact Us
-          </ListItem>
+          </Link>
+
+          <Link to="/contact">
+            <ListItem>
+              <ListItemPrefix>
+                <i className="fa-solid fa-phone-volume"></i>
+              </ListItemPrefix>
+              Contact Us
+            </ListItem>
+          </Link>
         </List>
-        <Button className="mt-3 ml-5 w-[87%]" size="lg">
-          ORDER NOW
-        </Button>
+        <Link to="/order">
+          <Button className="mt-3 ml-5 w-[87%]" size="lg">
+            ORDER NOW
+          </Button>
+        </Link>
       </Drawer>
     </>
   );
