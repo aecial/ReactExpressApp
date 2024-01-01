@@ -1,6 +1,8 @@
+import Title from "./components/Title";
+import { Button } from "@material-tailwind/react";
 function App() {
   return (
-    <main className="h-[100vh]">
+    <main className="">
       <div className="h-full bg-slate-100">
         {/* HEADER */}
         <div className="bg-white">
@@ -21,7 +23,26 @@ function App() {
           />
         </div>
         {/* HEADER */}
-        <h1 className="text-4xl text-center mt-10">EATIK BOY</h1>
+        <div className="h-[45vh] flex flex-col justify-between">
+          <Title title={"EATIK BOY"} additionalClass={"mt-10"} />
+          <div className="w-full">
+            <ul className="text-lg flex flex-col gap-5 w-[45%] mx-auto">
+              <li>
+                <i class="fa-solid fa-location-dot"></i> Santa Lucia, Capas,
+                Tarlac, 2315
+              </li>
+              <li>
+                <i class="fa-solid fa-phone-volume"></i> 09982409945
+              </li>
+              <li>
+                <i class="fa-brands fa-facebook"></i> @eatikboy
+              </li>
+            </ul>
+          </div>
+          <Button className="w-[80%] mx-auto text-2xl">
+            <i class="fa-solid fa-basket-shopping"></i> ORDER NOW
+          </Button>
+        </div>
       </div>
     </main>
   );
