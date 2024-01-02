@@ -14,7 +14,7 @@ const MenuCard = ({ imgSrc, title, price, btnFunc }) => {
           onClick={btnFunc}
           className="text-white relative left-12 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-3 text-center inline-flex items-center me-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
         >
-          <i class="fa-solid fa-plus"></i>
+          <i className="fa-solid fa-plus"></i>
           <span className="sr-only">Icon description</span>
         </button>
       </div>

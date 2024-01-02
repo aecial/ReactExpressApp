@@ -69,13 +69,17 @@ function Order() {
       a.click();
     });
   }
+  function cancel() {
+    setCartItem([]);
+    setIsOpen(false);
+  }
   useEffect(() => {
     fetch("/api/menu")
       .then((response) => response.json())
       .then((data) => setBackEndData(data));
   }, []);
   return (
-    <div className="bg-slate-500 pb-4 text-white flex flex-col justify-center items-center">
+    <div className=" bg-gray-700 pb-4 text-white flex flex-col justify-center items-center">
       <ButtonWithCounter btnClick={() => setIsOpen(true)} counter={cartItem} />
       <MediumTitle title={"Menu"} />
       <div className="flex">
@@ -172,7 +176,7 @@ function Order() {
               </div>
               <div className=" bg-amber-700 text-white flex justify-between p-4">
                 <FunctionalityButton
-                  btnFunction={() => setCartItem([])}
+                  btnFunction={cancel}
                   btnName={"CANCEL"}
                   color={"blue"}
                 />
@@ -188,7 +192,6 @@ function Order() {
       ) : (
         <span></span>
       )}
-      <Button className="bg-red-500">My Button</Button>
     </div>
   );
 }
