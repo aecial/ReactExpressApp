@@ -1,7 +1,9 @@
 import { DrawerWithNavigation } from "../components/DrawerWithNavigation";
 import Title from "../components/Title";
 import { Button } from "@material-tailwind/react";
+import { useNavigate } from "react-router-dom";
 function Home() {
+  const navigate = useNavigate();
   return (
     <main className="">
       <div className="h-full bg-slate-100">
@@ -50,7 +52,10 @@ function Home() {
               </li>
             </ul>
           </div>
-          <Button className="w-[80%] mx-auto text-2xl">
+          <Button
+            className="w-[80%] mx-auto text-2xl"
+            onClick={() => navigate("/order")}
+          >
             <i className="fa-solid fa-basket-shopping"></i> ORDER NOW
           </Button>
           <DrawerWithNavigation />
