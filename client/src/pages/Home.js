@@ -15,13 +15,13 @@ function Home() {
             </button>
             <img
               className="h-full w-full object-cover"
-              src="https://static.vecteezy.com/system/resources/previews/026/481/726/large_2x/a-spectacular-gaming-adventure-with-this-stunning-4k-wallpaper-free-photo.jpg"
+              src="https://lh3.googleusercontent.com/p/AF1QipP2swJfBwaufUWZ7TvAvParXZE-P4diB7UuZX6y=s680-w680-h510"
               alt="hero wallpaper"
             />
           </div>
           <img
-            className=" h-40 rounded-full mx-auto -mt-24"
-            src="https://cdn-icons-png.flaticon.com/512/80/80648.png"
+            className=" h-40 rounded-full mx-auto -mt-24 border border-2 border-black"
+            src="https://i.pinimg.com/736x/5b/b1/fc/5bb1fc9e5dabfbf0713d17e30d1a1d7c.jpg"
             alt="LOGO"
           />
         </div>

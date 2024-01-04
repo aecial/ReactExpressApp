@@ -19,7 +19,7 @@ export function DrawerWithNavigation({ hamburgerColor }) {
 
   return (
     <>
-      <button onClick={openDrawer} className="absolute top-2 right-3">
+      <button onClick={openDrawer} className="absolute top-2 right-3 ">
         <i
           className={`text-${
             hamburgerColor || "white"

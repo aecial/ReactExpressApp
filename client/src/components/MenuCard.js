@@ -1,13 +1,13 @@
 const MenuCard = ({ imgSrc, title, price, btnFunc }) => {
   return (
-    <div className=" border-2 border-black w-40 h-40 rounded-lg">
+    <div className="container border-2 border-white w-[150px] h-[170px] rounded-lg text-white">
       <img
         className=" object-cover w-20 h-20 relative left-10 -top-7 rounded-full"
         src={imgSrc}
         alt={title}
       />
       <div className="text-center relative -top-6">
-        <h1 className="text-2xl">{title}</h1>
+        <h1 className="text-xl">{title}</h1>
         <h3 className="text-end mr-6">₱{price}</h3>
         <button
           type="button"

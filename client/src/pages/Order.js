@@ -5,6 +5,8 @@ import ButtonWithCounter from "../components/ButtonWithCounter";
 import MediumTitle from "../components/MediumTitle";
 import FunctionalityButton from "../components/FunctionalityButton";
 import { Button } from "@material-tailwind/react";
+import { DrawerWithNavigation } from "../components/DrawerWithNavigation";
+import { Badge } from "@material-tailwind/react";
 function Order() {
   const [backEndData, setBackEndData] = useState([{}]);
   const [isOpen, setIsOpen] = useState(false);
@@ -79,10 +81,35 @@ function Order() {
       .then((data) => setBackEndData(data));
   }, []);
   return (
-    <div className=" bg-gray-700 pb-4 text-white flex flex-col justify-center items-center">
-      <ButtonWithCounter btnClick={() => setIsOpen(true)} counter={cartItem} />
-      <MediumTitle title={"Menu"} />
-      <div className="flex">
+    <main className="min-h-[100vh] pb-5 bg-gradient-to-br from-black via-black to-gray-900">
+      <div className="bg-black h-12 text-white flex">
+        <DrawerWithNavigation />
+      </div>
+      <button
+        onClick={() => setIsOpen(true)}
+        className="fixed block top-16 right-4 w-10 h-10 bg-white rounded-md z-10 border border-black"
+      >
+        <i className="fa-solid fa-cart-shopping text-lg"></i>
+        {cartItem.length === 0 ? (
+          <span></span>
+        ) : (
+          <Badge
+            content={cartItem.reduce((count, item) => {
+              return count + item.qty;
+            }, 0)}
+            className="-mt-5 text-xs"
+          ></Badge>
+        )}
+      </button>
+      <div className="mt-16  mx-4 min-h-[75vh] grid grid-cols-2 gap-7 z-0">
+        {backEndData.map((item) => (
+          <MenuCard
+            imgSrc={item.image}
+            title={item.name}
+            price={item.price}
+            btnFunc={() => addToCart(1, item.name, item.price)}
+          />
+        ))}
         {backEndData.map((item) => (
           <MenuCard
             imgSrc={item.image}
@@ -95,7 +122,7 @@ function Order() {
       {isOpen ? (
         <div
           id="ModelContainer"
-          className="fixed inset-0 h-full text-black bg-black flex justify-center items-center bg-opacity-20 backdrop-blur-sm"
+          className="fixed inset-0 z-50 h-full text-black bg-black flex justify-center items-center bg-opacity-20 backdrop-blur-sm"
         >
           <div className="p-2 h-[80%] overflow-y-scroll bg-white w-10/12 md:w-1/2 lg:1/3 shadow-inner border-e-emerald-600 rounded-lg py-5">
             <FunctionalityButton
@@ -125,7 +152,7 @@ function Order() {
               >
                 <table
                   // id="cartTable"
-                  className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400"
+                  className="w-full text-sm text-left rtl:text-right text-black"
                 >
                   <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                     <tr>
@@ -149,8 +176,8 @@ function Order() {
                           >
                             {vals.name}
                           </th>
-                          <td className="px-6 py-4 text-white">{vals.qty}</td>
-                          <td className="px-6 py-4 text-white">{vals.price}</td>
+                          <td className="px-6 py-4 text-black">{vals.qty}</td>
+                          <td className="px-6 py-4 text-black">{vals.price}</td>
                           <td className="px-6 py-4">
                             <button
                               id={`btn-${i}`}
@@ -192,7 +219,12 @@ function Order() {
       ) : (
         <span></span>
       )}
-    </div>
+    </main>
+    // {isOpen ? (
+
+    // ) : (
+    //   <span></span>
+    // )}
   );
 }
 
