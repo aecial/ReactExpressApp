@@ -64,11 +64,15 @@ function Order() {
     });
   }
   function screenshot() {
-    const element = document.getElementById("ModelContainer");
+    const element = document.getElementById("cartTable");
     if (!element) {
       return;
     }
-    html2canvas(element).then((canvas) => {
+    html2canvas(element, {
+      width: element.clientWidth,
+      height: element.clientHeight + 20,
+      // windowHeight: window.innerHeight,
+    }).then((canvas) => {
       let image = canvas.toDataURL("image/jpeg");
       console.log(image);
       let rand = Math.floor(Math.random() * 1000000000);
@@ -151,61 +155,60 @@ function Order() {
                 id="orderContainer"
                 className="relative overflow-x-auto shadow-md sm:rounded-lg"
               >
-                <table
-                  // id="cartTable"
-                  className="w-full  text-sm text-left rtl:text-right text-black"
-                >
-                  <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                    <tr>
-                      {tableHeaders.map((header) => (
-                        <th
-                          scope="col"
-                          className="px-6 py-3 bg-black text-white"
-                        >
-                          {header}
-                        </th>
-                      ))}
-                    </tr>
-                  </thead>
-                  <tbody id="cartTable">
-                    {cartItem.map((vals, i) => (
-                      <>
-                        <tr
-                          id={`btn-${i}Div`}
-                          className=" odd:bg-gray-700 even:bg-gray-600 text-white"
-                        >
+                <div id="cartTable">
+                  <table className="w-full  text-sm text-left rtl:text-right text-black">
+                    <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                      <tr>
+                        {tableHeaders.map((header) => (
                           <th
-                            scope="row"
-                            className="px-3 py-4 font-medium text-white whitespace-nowrap dark:text-white"
+                            scope="col"
+                            className="px-6 py-3 bg-black text-white"
                           >
-                            {vals.qty}x <span></span>
-                            {vals.name}
+                            {header}
                           </th>
-                          <td className="px-7 py-4">{vals.price}</td>
-                          <td className="px-0 py-4">
-                            <IconButton
-                              id={`btn-${i}`}
-                              size="sm"
-                              variant="outlined"
-                              color="red"
-                              onClick={() => removeFromCart(i, vals.name)}
-                              className="hover:bg-red-500 hover:text-white focus:bg-red-500 focus:text-white"
+                        ))}
+                      </tr>
+                    </thead>
+                    <tbody id="cartTable">
+                      {cartItem.map((vals, i) => (
+                        <>
+                          <tr
+                            id={`btn-${i}Div`}
+                            className=" odd:bg-gray-700 even:bg-gray-600 text-white"
+                          >
+                            <th
+                              scope="row"
+                              className="px-3 py-4 font-medium text-white whitespace-nowrap dark:text-white"
                             >
-                              <i class="fa-solid fa-xmark text-md text-white"></i>
-                            </IconButton>
-                          </td>
-                        </tr>
-                      </>
-                    ))}
-                  </tbody>
-                </table>
-                <div className="text-2xl flex justify-between px-5">
-                  TOTAL:
-                  <span id="totalPrice">
-                    {cartItem.reduce((total, item) => {
-                      return total + item.price;
-                    }, 0)}
-                  </span>
+                              {vals.qty}x <span></span>
+                              {vals.name}
+                            </th>
+                            <td className="px-7 py-4">{vals.price}</td>
+                            <td className="px-0 py-4">
+                              <IconButton
+                                id={`btn-${i}`}
+                                size="sm"
+                                variant="outlined"
+                                color="red"
+                                onClick={() => removeFromCart(i, vals.name)}
+                                className="hover:bg-red-500 hover:text-white focus:bg-red-500 focus:text-white"
+                              >
+                                <i class="fa-solid fa-xmark text-md text-white"></i>
+                              </IconButton>
+                            </td>
+                          </tr>
+                        </>
+                      ))}
+                    </tbody>
+                  </table>
+                  <div className="text-2xl flex justify-between px-5">
+                    TOTAL:
+                    <span id="totalPrice">
+                      {cartItem.reduce((total, item) => {
+                        return total + item.price;
+                      }, 0)}
+                    </span>
+                  </div>
                 </div>
               </div>
               <div className=" flex justify-between p-4">
