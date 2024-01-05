@@ -102,16 +102,9 @@ function Order() {
         )}
       </button>
       <div className="mt-16  mx-4 min-h-[75vh] grid grid-cols-2 gap-7 z-0">
-        {backEndData.map((item) => (
+        {backEndData.map((item, index) => (
           <MenuCard
-            imgSrc={item.image}
-            title={item.name}
-            price={item.price}
-            btnFunc={() => addToCart(1, item.name, item.price)}
-          />
-        ))}
-        {backEndData.map((item) => (
-          <MenuCard
+            key={index}
             imgSrc={item.image}
             title={item.name}
             price={item.price}
