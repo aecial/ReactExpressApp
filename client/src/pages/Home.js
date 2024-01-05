@@ -2,6 +2,7 @@ import { DrawerWithNavigation } from "../components/DrawerWithNavigation";
 import Title from "../components/Title";
 import { Button } from "@material-tailwind/react";
 import { useNavigate } from "react-router-dom";
+import ducky from "../assets/vectorDuck1.png";
 function Home() {
   const navigate = useNavigate();
   return (
@@ -9,7 +10,7 @@ function Home() {
       <div className="h-full bg-slate-100">
         {/* HEADER */}
         <div className="bg-white">
-          <div className="h-[30vh] bg-blue-400 overflow-hidden">
+          <div className="h-[25vh] bg-blue-400 overflow-hidden">
             <button className="absolute top-2 right-3">
               <i className="text-white text-2xl fa-solid fa-burger "></i>
             </button>
@@ -19,15 +20,17 @@ function Home() {
               alt="hero wallpaper"
             />
           </div>
-          <img
-            className=" h-40 rounded-full mx-auto -mt-24 border border-2 border-black"
-            src="https://i.pinimg.com/736x/5b/b1/fc/5bb1fc9e5dabfbf0713d17e30d1a1d7c.jpg"
-            alt="LOGO"
-          />
+          <div className="bg-red-500 overflow-hidden rounded-full w-40 h-40 mx-auto relative -top-20 border-2 border-black">
+            <img
+              src={ducky}
+              alt="LOGO"
+              className=" object-cover w-full h-full"
+            />
+          </div>
         </div>
         {/* HEADER */}
-        <div className="h-[47vh] flex flex-col justify-between">
-          <Title title={"EATIK BOY"} additionalClass={"mt-10"} />
+        <div className="h-[47vh] -mt-12 flex flex-col justify-between">
+          <Title title={"EATIK BOY"} />
           <div className="w-full">
             <ul className="text-lg flex flex-col gap-5 w-[45%] mx-auto">
               <li>
