@@ -4,14 +4,21 @@ import MenuCard from "../components/MenuCard";
 import ButtonWithCounter from "../components/ButtonWithCounter";
 import MediumTitle from "../components/MediumTitle";
 import FunctionalityButton from "../components/FunctionalityButton";
-import { Button } from "@material-tailwind/react";
 import { DrawerWithNavigation } from "../components/DrawerWithNavigation";
-import { Badge } from "@material-tailwind/react";
+import {
+  Badge,
+  IconButton,
+  Button,
+  Dialog,
+  DialogBody,
+  DialogHeader,
+  DialogFooter,
+} from "@material-tailwind/react";
 function Order() {
   const [backEndData, setBackEndData] = useState([{}]);
   const [isOpen, setIsOpen] = useState(false);
   const [cartItem, setCartItem] = useState([]);
-  const tableHeaders = ["Product Name", "Quantity", "Price", "Action"];
+  const tableHeaders = ["Name", "Price", ""];
 
   function addToCart(qty, name, price) {
     // Checks if the item is inside the array already
@@ -118,12 +125,13 @@ function Order() {
           className="fixed inset-0 z-50 h-full text-black bg-black flex justify-center items-center bg-opacity-20 backdrop-blur-sm"
         >
           <div className="p-2 h-[80%] overflow-y-scroll bg-white w-10/12 md:w-1/2 lg:1/3 shadow-inner border-e-emerald-600 rounded-lg py-5">
-            <FunctionalityButton
-              btnFunction={() => setIsOpen(false)}
-              btnName={"X"}
-              additionalClasses={"relative left-[90%] rounded-3xl"}
-              color={"blue"}
-            />
+            <IconButton
+              variant="outlined"
+              onClick={() => setIsOpen(false)}
+              className="relative left-[85%] lg:left-[90%] xl:left-[95%] hover:bg-black hover:text-white focus:bg-black focus:text-white"
+            >
+              <i class="fa-solid fa-xmark text-xl"></i>
+            </IconButton>
             <MediumTitle title={"CART"} />
             <hr />
 
@@ -145,12 +153,15 @@ function Order() {
               >
                 <table
                   // id="cartTable"
-                  className="w-full text-sm text-left rtl:text-right text-black"
+                  className="w-full  text-sm text-left rtl:text-right text-black"
                 >
                   <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                     <tr>
                       {tableHeaders.map((header) => (
-                        <th scope="col" className="px-6 py-3">
+                        <th
+                          scope="col"
+                          className="px-6 py-3 bg-black text-white"
+                        >
                           {header}
                         </th>
                       ))}
@@ -161,24 +172,27 @@ function Order() {
                       <>
                         <tr
                           id={`btn-${i}Div`}
-                          className="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700"
+                          className=" odd:bg-gray-700 even:bg-gray-600 text-white"
                         >
                           <th
                             scope="row"
-                            className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                            className="px-3 py-4 font-medium text-white whitespace-nowrap dark:text-white"
                           >
+                            {vals.qty}x <span></span>
                             {vals.name}
                           </th>
-                          <td className="px-6 py-4 text-black">{vals.qty}</td>
-                          <td className="px-6 py-4 text-black">{vals.price}</td>
-                          <td className="px-6 py-4">
-                            <button
+                          <td className="px-7 py-4">{vals.price}</td>
+                          <td className="px-0 py-4">
+                            <IconButton
                               id={`btn-${i}`}
+                              size="sm"
+                              variant="outlined"
+                              color="red"
                               onClick={() => removeFromCart(i, vals.name)}
-                              className="font-medium text-red-600 hover:underline"
+                              className="hover:bg-red-500 hover:text-white focus:bg-red-500 focus:text-white"
                             >
-                              Delete
-                            </button>
+                              <i class="fa-solid fa-xmark text-md text-white"></i>
+                            </IconButton>
                           </td>
                         </tr>
                       </>
@@ -194,17 +208,21 @@ function Order() {
                   </span>
                 </div>
               </div>
-              <div className=" bg-amber-700 text-white flex justify-between p-4">
-                <FunctionalityButton
-                  btnFunction={cancel}
-                  btnName={"CANCEL"}
-                  color={"blue"}
-                />
-                <FunctionalityButton
-                  btnFunction={screenshot}
-                  btnName={"SAVE"}
-                  color={"blue"}
-                />
+              <div className=" flex justify-between p-4">
+                <Button
+                  variant="text"
+                  className="flex items-center gap-3 underline"
+                  onClick={cancel}
+                >
+                  Cancel
+                </Button>
+                <Button
+                  className="flex items-center gap-3"
+                  onClick={screenshot}
+                >
+                  <i class="fa-solid fa-download"></i>
+                  Save
+                </Button>
               </div>
             </div>
           </div>

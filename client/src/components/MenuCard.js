@@ -1,6 +1,6 @@
 const MenuCard = ({ imgSrc, title, price, btnFunc }) => {
   return (
-    <div className="container border-2 border-white w-[150px] h-[170px] rounded-lg text-white">
+    <div className="container border-2 border-white w-[150px] h-[200px] rounded-lg text-white">
       <img
         className=" object-cover w-20 h-20 relative left-10 -top-7 rounded-full"
         src={imgSrc}
