@@ -14,8 +14,11 @@ import {
   DialogHeader,
   DialogFooter,
 } from "@material-tailwind/react";
+import FoodPills from "../components/FoodPills";
 function Order() {
   const [backEndData, setBackEndData] = useState([{}]);
+  const [foodTypes, setFoodTypes] = useState([{}]);
+  const distinctTypes = [...new Set(foodTypes.map((data) => data.type))];
   const [isOpen, setIsOpen] = useState(false);
   const [cartItem, setCartItem] = useState([]);
   const tableHeaders = ["Name", "Price", ""];
@@ -86,19 +89,42 @@ function Order() {
     setCartItem([]);
     setIsOpen(false);
   }
-  useEffect(() => {
+  function changeData(val) {
+    fetch(`/api/menu/food/${val}`)
+      .then((response) => response.json())
+      .then((data) => setBackEndData(data));
+
+    console.log(val);
+  }
+  function fetchMenu() {
     fetch("/api/menu")
       .then((response) => response.json())
       .then((data) => setBackEndData(data));
+  }
+  useEffect(() => {
+    fetch("/api/menu")
+      .then((response) => response.json())
+      .then((data) => (setBackEndData(data), setFoodTypes(data)));
   }, []);
+
   return (
     <main className="min-h-[100vh] pb-5 bg-gradient-to-br from-black via-black to-gray-900">
       <div className="bg-black h-12 text-white flex">
         <DrawerWithNavigation />
       </div>
+      <div className="flex w-[100vw] overflow-x-scroll gap-4 px-3">
+        <FoodPills key={"all"} foodName={"All"} btnFunction={fetchMenu} />
+        {distinctTypes.map((item, index) => (
+          <FoodPills
+            key={index}
+            foodName={item}
+            btnFunction={() => changeData(item)}
+          />
+        ))}
+      </div>
       <button
         onClick={() => setIsOpen(true)}
-        className="fixed block top-16 right-4 w-10 h-10 bg-white rounded-md z-10 border border-black"
+        className="fixed block top-24 right-4 w-10 h-10 bg-white rounded-md z-10 border border-black"
       >
         <i className="fa-solid fa-cart-shopping text-lg"></i>
         {cartItem.length === 0 ? (
