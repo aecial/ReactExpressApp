@@ -94,7 +94,10 @@ function Order() {
   useEffect(() => {
     fetch("/api/menu")
       .then((response) => response.json())
-      .then((data) => (setBackEndData(data), setFoodTypes(data)));
+      .then((data) => {
+        setBackEndData(data);
+        setFoodTypes(data);
+      });
   }, []);
 
   return (
