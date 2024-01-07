@@ -102,7 +102,7 @@ function Order() {
       <div className="bg-black h-12 text-white flex">
         <DrawerWithNavigation />
       </div>
-      <div className="flex w-[100vw] overflow-x-scroll gap-4 px-3">
+      <div className="foodPillsDiv flex w-[100vw] overflow-x-scroll gap-4 px-3">
         <FoodPills key={"all"} foodName={"All"} btnFunction={fetchMenu} />
         {distinctTypes.map((item, index) => (
           <FoodPills
