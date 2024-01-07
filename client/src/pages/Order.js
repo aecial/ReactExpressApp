@@ -1,19 +1,9 @@
 import { useState, useEffect } from "react";
 import html2canvas from "html2canvas";
 import MenuCard from "../components/MenuCard";
-import ButtonWithCounter from "../components/ButtonWithCounter";
 import MediumTitle from "../components/MediumTitle";
-import FunctionalityButton from "../components/FunctionalityButton";
 import { DrawerWithNavigation } from "../components/DrawerWithNavigation";
-import {
-  Badge,
-  IconButton,
-  Button,
-  Dialog,
-  DialogBody,
-  DialogHeader,
-  DialogFooter,
-} from "@material-tailwind/react";
+import { Badge, IconButton, Button } from "@material-tailwind/react";
 import FoodPills from "../components/FoodPills";
 function Order() {
   const [backEndData, setBackEndData] = useState([{}]);
