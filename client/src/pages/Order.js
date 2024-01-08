@@ -130,7 +130,7 @@ function Order() {
           ></Badge>
         )}
       </button>
-      <div className="mt-16  mx-4 min-h-[75vh] grid grid-cols-2 gap-7 z-0">
+      <div className="mt-16 place-items-center min-h-[75vh] grid grid-cols-2 lg:grid-cols-5 gap-y-14 lg:gap-0 z-0">
         {backEndData.map((item, index) => (
           <MenuCard
             key={index}
