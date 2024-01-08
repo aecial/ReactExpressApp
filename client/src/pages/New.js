@@ -14,9 +14,10 @@ const New = () => {
   return (
     <main className=" bg-gray-800 h-[100vh] flex justify-center items-center">
       <form
-        action="/api/menu"
+        action="/api/new"
         method="POST"
         className="w-[50%] flex flex-col gap-5"
+        enctype="multipart/form-data"
       >
         <Input
           variant="outlined"
