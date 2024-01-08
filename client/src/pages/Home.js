@@ -11,9 +11,6 @@ function Home() {
         {/* HEADER */}
         <div className="bg-white">
           <div className="h-[25vh] bg-blue-400 overflow-hidden">
-            <button className="absolute top-2 right-3">
-              <i className="text-white text-2xl fa-solid fa-burger "></i>
-            </button>
             <img
               className="h-full w-full object-cover"
               src="https://lh3.googleusercontent.com/p/AF1QipP2swJfBwaufUWZ7TvAvParXZE-P4diB7UuZX6y=s680-w680-h510"
@@ -61,7 +58,7 @@ function Home() {
           >
             <i className="fa-solid fa-basket-shopping"></i> ORDER NOW
           </Button>
-          <DrawerWithNavigation />
+          <DrawerWithNavigation hamburgerColor={"white"} />
         </div>
       </div>
     </main>

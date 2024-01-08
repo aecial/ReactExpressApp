@@ -5,6 +5,7 @@ import MediumTitle from "../components/MediumTitle";
 import { DrawerWithNavigation } from "../components/DrawerWithNavigation";
 import { Badge, IconButton, Button } from "@material-tailwind/react";
 import FoodPills from "../components/FoodPills";
+import HamburgerButtonBlock from "../components/HamburgerButtonBlock";
 function Order() {
   const [backEndData, setBackEndData] = useState([{}]);
   const [foodTypes, setFoodTypes] = useState([{}]);
@@ -102,9 +103,7 @@ function Order() {
 
   return (
     <main className="min-h-[100vh] pb-5 bg-gradient-to-br from-black via-black to-gray-900">
-      <div className="bg-black h-12 text-white flex">
-        <DrawerWithNavigation />
-      </div>
+      <HamburgerButtonBlock hamburgerColor={"white"} />
       <div className="foodPillsDiv flex w-[100vw] overflow-x-scroll gap-4 px-3">
         <FoodPills key={"all"} foodName={"All"} btnFunction={fetchMenu} />
         {distinctTypes.map((item, index) => (

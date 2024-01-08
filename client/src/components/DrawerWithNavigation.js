@@ -11,6 +11,7 @@ import {
 } from "@material-tailwind/react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import HamburgerButton from "./HamburgerButton";
 
 export function DrawerWithNavigation({ hamburgerColor }) {
   const [open, setOpen] = useState(false);
@@ -19,13 +20,11 @@ export function DrawerWithNavigation({ hamburgerColor }) {
 
   return (
     <>
-      <button onClick={openDrawer} className="absolute top-2 right-3 ">
-        <i
-          className={`text-${
-            hamburgerColor || "white"
-          } text-2xl fa-solid fa-burger`}
-        ></i>
-      </button>
+      <HamburgerButton
+        btnFunction={openDrawer}
+        className="absolute top-2 right-3"
+        variant={hamburgerColor}
+      />
       <Drawer placement="right" open={open} onClose={closeDrawer}>
         <div className="mb-2 flex items-center justify-between p-4">
           <Typography variant="h5" color="blue-gray">
