@@ -16,15 +16,14 @@ const getAllItems = async (req, res) => {
 };
 const addItem = async (req, res) => {
   try {
-    console.log("part1");
     const { name, price, type } = req.body;
     const file = await req.file;
-    console.log(name);
+
     const editedPrice = Number(price);
-    console.log(editedPrice);
+
     file.name;
     const editedImage = `/images/${file.originalname}`;
-    console.log(editedImage);
+
     const newItem = await prisma.menu.create({
       data: {
         name: name,

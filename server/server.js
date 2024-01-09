@@ -29,7 +29,7 @@ app.get("/api", (req, res) => {
 const menuRouter = require("./routes/menu");
 const prisma = require("./lib/PrismaProvider");
 app.use("/api/menu", menuRouter);
-// app.post("/api/new", upload.single("image"), async (req, res, file) => {
+
 //   try {
 //     console.log("part1");
 //     const { name, price, type } = req.body;
