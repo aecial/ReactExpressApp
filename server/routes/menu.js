@@ -2,7 +2,10 @@ const express = require("express");
 const router = express.Router();
 const menuController = require("../controllers/menuController");
 
-router.route("/").get(menuController.getAllItems).post(menuController.addItem);
+router
+  .route("/")
+  .get(menuController.getAllItems)
+  .post(menuController.uploadMiddleware, menuController.addItem);
 
 const foodRouter = require("./food");
 router.use("/food", foodRouter);
