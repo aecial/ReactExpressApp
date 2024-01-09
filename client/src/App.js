@@ -4,6 +4,7 @@ import Order from "./pages/Order";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import New from "./pages/New";
+import Login from "./pages/Login";
 function App() {
   return (
     <>
@@ -13,6 +14,7 @@ function App() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/order" element={<Order />} />
         <Route path="/new" element={<New />} />
+        <Route path="/gate" element={<Login />} />
       </Routes>
     </>
   );

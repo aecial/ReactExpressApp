@@ -22,6 +22,7 @@ function Home() {
               src={ducky}
               alt="LOGO"
               className=" object-cover w-full h-full"
+              onDoubleClick={() => navigate("/gate")}
             />
           </div>
         </div>
