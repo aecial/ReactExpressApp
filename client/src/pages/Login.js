@@ -64,14 +64,8 @@ const Login = () => {
               class="mt-6 border border-white block w-full select-none rounded-lg bg-gray-900 py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-gray-900/10 transition-all hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
               type="submit"
             >
-              sign up
+              SUBMIT
             </button>
-            <p class="block mt-4 font-sans text-base antialiased font-normal leading-relaxed text-center text-white">
-              Already have an account?{" "}
-              <a href="#" class="font-medium text-white underline">
-                Sign In
-              </a>
-            </p>
           </form>
         </div>
       </div>
