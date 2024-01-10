@@ -1,6 +1,22 @@
-import React from "react";
-
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 const Login = () => {
+  const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  function handleSubmit(e) {
+    e.preventDefault();
+    const details = { email, password };
+    fetch("/api/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(details),
+    })
+      .then((response) => response.json())
+      .then((data) => sessionStorage.setItem("jwt", data.accessToken))
+      .then(setTimeout(2000))
+      .then(navigate("/new"));
+  }
   return (
     <main className="h-screen flex justify-center items-center bg-gray-800  text-white">
       <div className="">
@@ -8,7 +24,11 @@ const Login = () => {
           <h4 class="block font-sans text-center text-2xl antialiased font-semibold leading-snug tracking-normal text-white">
             LOGIN
           </h4>
-          <form class="max-w-screen-lg mt-8 mb-2 w-80 sm:w-96">
+          <form
+            onSubmit={handleSubmit}
+            method="POST"
+            class="max-w-screen-lg mt-8 mb-2 w-80 sm:w-96"
+          >
             <div class="flex flex-col gap-6 mb-1">
               <h6 class="block -mb-3 font-sans text-base antialiased font-semibold leading-relaxed tracking-normal text-white">
                 Email
@@ -16,6 +36,9 @@ const Login = () => {
               <div class="relative h-11 w-full min-w-[200px]">
                 <input
                   placeholder="name@mail.com"
+                  name="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                   class="peer h-full w-full rounded-md border border-blue-gray-200 border-t-transparent !border-t-blue-gray-200 bg-transparent px-3 py-3 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-gray-900 focus:border-t-transparent focus:!border-t-gray-900 focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
                   required
                 />
@@ -28,6 +51,9 @@ const Login = () => {
                 <input
                   type="password"
                   placeholder="********"
+                  name="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                   class="peer h-full w-full rounded-md border border-blue-gray-200 border-t-transparent !border-t-blue-gray-200 bg-transparent px-3 py-3 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-gray-900 focus:border-t-transparent focus:!border-t-gray-900 focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
                   required
                 />
@@ -36,7 +62,7 @@ const Login = () => {
             </div>
             <button
               class="mt-6 border border-white block w-full select-none rounded-lg bg-gray-900 py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-gray-900/10 transition-all hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-              type="button"
+              type="submit"
             >
               sign up
             </button>

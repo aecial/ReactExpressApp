@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -9,26 +6,35 @@ datasource db {
   provider = "mysql"
   url      = env("DATABASE_URL")
 }
-model Menu {
-  id Int @id @default(autoincrement())
-  image String @unique
-  name String @unique
-  price Int @default(0)
-  type Type
-  class Class @default(FOOD)
+
+model menu {
+  id    Int        @id @default(autoincrement())
+  image String     @unique(map: "Menu_image_key")
+  name  String     @unique(map: "Menu_name_key")
+  type  menu_type
+  class menu_class @default(FOOD)
+  price Int        @default(0)
 }
-enum Class {
-  FOOD
-  DRINK
-  OTHERS
+
+model user {
+  id       Int    @id @default(autoincrement())
+  email    String @unique(map: "User_email_key")
+  password String
 }
-enum Type {
+
+enum menu_type {
   ITIK
   PORK
   BEEF
   CHICKEN
   SEAFOODS
   VEGETABLES
+  DRINK
+  OTHERS
+}
+
+enum menu_class {
+  FOOD
   DRINK
   OTHERS
 }

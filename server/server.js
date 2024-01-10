@@ -1,5 +1,8 @@
+require("dotenv").config();
 const express = require("express");
 const app = express();
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 const multer = require("multer");
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -29,31 +32,57 @@ app.get("/api", (req, res) => {
 const menuRouter = require("./routes/menu");
 const prisma = require("./lib/PrismaProvider");
 app.use("/api/menu", menuRouter);
+app.get("/api/romr", authenticateToken, (req, res) => {
+  res.json({ message: "authenticated" });
+});
+app.post("/api/login", async (req, res) => {
+  const user = {
+    email: req.body.email,
+    password: req.body.password,
+  };
 
-//   try {
-//     console.log("part1");
-//     const { name, price, type } = req.body;
-//     const file = await req.file;
-//     console.log(name);
-//     const editedPrice = Number(price);
-//     console.log(editedPrice);
-//     file.name;
-//     const editedImage = `/images/${file.originalname}`;
-//     console.log(editedImage);
-//     const newItem = await prisma.menu.create({
-//       data: {
-//         name: name,
-//         price: editedPrice,
-//         type: type,
-//         image: editedImage,
-//       },
-//     });
-//     res.json({ message: `Successfully Added ${name}` });
-//   } catch (error) {
-//     // res.sendStatus(500);
-//     res.json(error);
-//   }
-// });
+  const authEmail = await prisma.user.findUnique({
+    where: {
+      email: user.email,
+    },
+  });
+  if (authEmail) {
+    const confirmPass = await bcrypt.compare(user.password, authEmail.password);
+    if (confirmPass) {
+      const accessToken = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET);
+      res.json({ accessToken: accessToken });
+    } else {
+      res.json({ message: "Invalid Password" });
+    }
+  } else {
+    res.json("No Acc");
+  }
+});
+app.post("/api/register", async (req, res) => {
+  const user = {
+    email: req.body.email,
+    password: req.body.password,
+  };
+  const hashedPassword = await bcrypt.hash(user.password, 10);
+  const addNewUser = await prisma.user.create({
+    data: {
+      email: user.email,
+      password: hashedPassword,
+    },
+  });
+  res.json({ message: "Added new User" });
+});
+function authenticateToken(req, res, next) {
+  const authHeader = req.headers["authorization"];
+  const token = authHeader && authHeader.split(" ")[1];
+  if (token == null) return res.sendStatus(401);
+
+  jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
+    if (err) return res.sendStatus(403);
+    req.user = user;
+    next();
+  });
+}
 app.get("*", (req, res) => {
   res.sendStatus(404);
 });
