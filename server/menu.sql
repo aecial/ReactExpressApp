@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 03, 2024 at 12:12 AM
+-- Generation Time: Jan 10, 2024 at 02:49 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -44,7 +44,13 @@ INSERT INTO `menu` (`id`, `image`, `name`, `type`, `class`, `price`) VALUES
 (1, 'https://ispweb.pcaarrd.dost.gov.ph/wp-content/uploads/2022/04/itik4life-2-1024x680.png', 'Fried Itik', 'ITIK', 'FOOD', 285),
 (2, 'https://joysputocake.com/cdn/shop/products/Coke.jpg?v=1617678361', 'Coke(1.5)', 'DRINK', 'DRINK', 100),
 (3, 'https://static01.nyt.com/images/2018/02/21/dining/00RICEGUIDE8/00RICEGUIDE8-superJumbo.jpg', 'Rice', 'OTHERS', 'OTHERS', 15),
-(4, 'https://cookandsavor.com/wp-content/uploads/AirFryerLechonKawali-scaled.jpg', 'Lechon Kawali', 'PORK', 'FOOD', 190);
+(4, 'https://cookandsavor.com/wp-content/uploads/AirFryerLechonKawali-scaled.jpg', 'Lechon Kawali', 'PORK', 'FOOD', 190),
+(5, 'https://theskinnypot.com/wp-content/uploads/2023/06/Sinigang-na-Salmon-Belly.jpg', 'Salmon Sinigang', 'SEAFOODS', 'FOOD', 180),
+(6, '/images/dinakdakan.jpg', 'Dinakdakan', 'PORK', 'FOOD', 180),
+(7, '/images/sisig.jpg', 'Sisig', 'PORK', 'FOOD', 180),
+(8, '/images/kasalo.png', 'Coke(Kasalo)', 'DRINK', 'FOOD', 50),
+(13, '/images/HiponSinigang.jpg', 'Shrimp Sinigang', 'SEAFOODS', 'FOOD', 180),
+(14, '/images/BuffaloWings.jpg', 'Buffalo Wings', 'CHICKEN', 'FOOD', 180);
 
 --
 -- Indexes for dumped tables
@@ -66,7 +72,7 @@ ALTER TABLE `menu`
 -- AUTO_INCREMENT for table `menu`
 --
 ALTER TABLE `menu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
