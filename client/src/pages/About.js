@@ -1,9 +1,10 @@
-import { Carousel } from "@material-tailwind/react";
+import { Button, Carousel } from "@material-tailwind/react";
 import MediumTitle from "../components/MediumTitle";
+import ReviewCard from "../components/ReviewCard";
 
 const About = () => {
   return (
-    <main className="h-screen p-4 flex flex-col justify-center items-center">
+    <main className="min-h-screen p-4 flex flex-col justify-center items-center">
       <MediumTitle title={"GALLERY"} />
       <div className=" w-full h-64 mb-10">
         <Carousel className="rounded-xl">
@@ -26,6 +27,14 @@ const About = () => {
       </div>
 
       <MediumTitle title={"reviews"} />
+      <div className="flex flex-col gap-4 overflow-x-scroll">
+        <ReviewCard />
+        <ReviewCard />
+        <ReviewCard />
+        <a href="https://www.facebook.com" className="w-full">
+          <Button className="w-full text-lg">Add a Review?</Button>
+        </a>
+      </div>
     </main>
   );
 };
