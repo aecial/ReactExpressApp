@@ -59,9 +59,9 @@ export function DrawerWithNavigation({ hamburgerColor }) {
           <Link to="/about">
             <ListItem>
               <ListItemPrefix>
-                <i className="fa-solid fa-circle-info"></i>
+                <i class="fa-solid fa-images"></i>
               </ListItemPrefix>
-              About Us
+              Gallery & Reviews
               {/* <ListItemSuffix>
                   <Chip
                     value="5"
