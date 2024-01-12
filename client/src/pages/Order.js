@@ -74,6 +74,9 @@ function Order() {
       a.href = image;
       a.download = `MyOrder-${rand}.jpeg`;
       a.click();
+      const fbPage = document.createElement("a");
+      fbPage.href = "https://www.facebook.com";
+      fbPage.click();
     });
   }
   function cancel() {
