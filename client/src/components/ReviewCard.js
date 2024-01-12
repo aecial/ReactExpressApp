@@ -1,8 +1,8 @@
-import { Rating } from "@material-tailwind/react";
+import { Rating, Typography } from "@material-tailwind/react";
 
-const ReviewCard = () => {
+const ReviewCard = ({ color }) => {
   return (
-    <div className=" w-80 h-36 p-2 border border-black overflow-hidden">
+    <div className={` w-80 h-auto p-2 border border-${color} overflow-hidden`}>
       <div className="flex items-center gap-6">
         <div className="bg-white w-20 h-20 rounded-full">
           <img
@@ -13,15 +13,18 @@ const ReviewCard = () => {
         </div>
         <div>
           <Rating value={5} />
-          <h1 className="text-xl">Teddy L. Pascual Jr.</h1>
-          <h2 className="text-sm">December 23, 2024</h2>
+          <Typography variant="h5" color={color}>
+            Teddy L. Pascual Jr.
+          </Typography>
+          <Typography variant="small" color={color}>
+            December 23, 2024
+          </Typography>
         </div>
       </div>
-      <p className="text-center">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque
-        dignissimos tempore esse neque sed tenetur soluta animi praesentium
-        possimus! Doloribus?
-      </p>
+      <Typography variant="lead" color={color}>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea voluptatem
+        vitae eveniet dolorum pariatur magnam maxime sit sapiente quaerat a.
+      </Typography>
     </div>
   );
 };
