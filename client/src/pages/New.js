@@ -1,13 +1,13 @@
 import { Button, Input } from "@material-tailwind/react";
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 const New = () => {
+  const { state } = useLocation();
   const navigate = useNavigate();
-  const [authenticated, setAuthenticated] = useState("");
-  useEffect(() => {
-    const token = sessionStorage.getItem("jwt");
-    setAuthenticated(token);
-  }, []);
+  // useEffect(() => {
+  //   const token = sessionStorage.getItem("jwt");
+  //   setAuthenticated(token);
+  // }, []);
+
   const types = [
     "ITIK",
     "PORK",
@@ -18,7 +18,7 @@ const New = () => {
     "DRINK",
     "OTHERS",
   ];
-  if (authenticated === null || "") {
+  if (state === null || "" || undefined) {
     return (
       <main className=" bg-gray-800 text-white h-[100vh] flex flex-col gap-4 justify-center items-center">
         <h1 className="text-4xl">UNAUTHORIZED</h1>

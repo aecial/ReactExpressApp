@@ -13,9 +13,9 @@ const Login = () => {
       body: JSON.stringify(details),
     })
       .then((response) => response.json())
-      .then((data) => sessionStorage.setItem("jwt", data.accessToken))
-      .then(setTimeout(2000))
-      .then(navigate("/new"));
+      .then((data) =>
+        navigate("/new", { state: { accessToken: data.accessToken } })
+      );
   }
   return (
     <main className="h-screen flex justify-center items-center bg-gray-800  text-white">
