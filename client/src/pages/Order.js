@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import html2canvas from "html2canvas";
 import MenuCard from "../components/MenuCard";
 import MediumTitle from "../components/MediumTitle";
-import { DrawerWithNavigation } from "../components/DrawerWithNavigation";
 import { Badge, IconButton, Button } from "@material-tailwind/react";
 import FoodPills from "../components/FoodPills";
 import HamburgerButtonBlock from "../components/HamburgerButtonBlock";
@@ -255,11 +254,6 @@ function Order() {
         <span></span>
       )}
     </main>
-    // {isOpen ? (
-
-    // ) : (
-    //   <span></span>
-    // )}
   );
 }
 

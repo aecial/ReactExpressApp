@@ -3,10 +3,6 @@ import { useNavigate, useLocation } from "react-router-dom";
 const New = () => {
   const { state } = useLocation();
   const navigate = useNavigate();
-  // useEffect(() => {
-  //   const token = sessionStorage.getItem("jwt");
-  //   setAuthenticated(token);
-  // }, []);
 
   const types = [
     "ITIK",
