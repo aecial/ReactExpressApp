@@ -9,3 +9,6 @@
 .foodPillsDiv::-webkit-scrollbar {
   display: none;
 }
+.heightWithBlock {
+  height: calc(100% - 60px);
+}
