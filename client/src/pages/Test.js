@@ -1,7 +1,5 @@
-import React from "react";
-
 const Test = () => {
-  return <main>Test</main>;
+  return <main className="h-screen bg-gray-800 text-white">Test</main>;
 };
 
 export default Test;
