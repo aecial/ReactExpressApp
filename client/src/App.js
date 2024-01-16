@@ -5,6 +5,7 @@ import About from "./pages/About";
 import Contact from "./pages/Contact";
 import New from "./pages/New";
 import Login from "./pages/Login";
+import Test from "./pages/Test";
 function App() {
   return (
     <>
@@ -15,6 +16,7 @@ function App() {
         <Route path="/order" element={<Order />} />
         <Route path="/new" element={<New />} />
         <Route path="/gate" element={<Login />} />
+        <Route path="/test" element={<Test />} />
       </Routes>
     </>
   );
