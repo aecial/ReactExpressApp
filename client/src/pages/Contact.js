@@ -11,13 +11,14 @@ const Contact = () => {
             Get In Touch
           </Typography>
 
-          <div className="mt-8 flex flex-col justify-center items-center gap-8">
+          <div className="mt-8 flex flex-col lg:flex-row justify-center items-center gap-8">
             <ContactCard
               header={"Address"}
               icon={
                 <i class="fa-solid fa-map-location-dot text-[80px] text-white"></i>
               }
-              text={"Santa Lucia, Capas, Tarlac, 2315"}
+              text={"Transmitter, Santa Lucia, Capas, Tarlac"}
+              link={"https://maps.app.goo.gl/CuuefCM8MYVZNF3XA"}
             />
             <ContactCard
               header={"Facebook"}
