@@ -32,7 +32,7 @@ app.get("/api", (req, res) => {
 const menuRouter = require("./routes/menu");
 const prisma = require("./lib/PrismaProvider");
 app.use("/api/menu", menuRouter);
-app.get("/api/romr", authenticateToken, (req, res) => {
+app.post("/api/test", upload.single("image"), (req, res) => {
   res.json({ message: "authenticated" });
 });
 app.post("/api/login", async (req, res) => {
