@@ -1,5 +1,6 @@
 const prisma = require("../lib/PrismaProvider");
 const multer = require("multer");
+const jwt = require("jsonwebtoken");
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, "./../client/public/images/");
@@ -38,9 +39,20 @@ const addItem = async (req, res) => {
     res.json(error);
   }
 };
+const authenticateToken = (req, res, next) => {
+  const authHeader = req.headers["authorization"];
+  const token = authHeader && authHeader.split(" ")[1];
+  if (token == null) return res.sendStatus(401);
+  jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
+    if (err) return res.sendStatus(403);
+    req.user = user;
+    next();
+  });
+};
 const uploadMiddleware = upload.single("image");
 module.exports = {
   getAllItems,
   addItem,
   uploadMiddleware,
+  authenticateToken,
 };

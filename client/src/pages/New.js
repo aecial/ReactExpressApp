@@ -1,9 +1,9 @@
 import { Button, Input } from "@material-tailwind/react";
+import { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 const New = () => {
   const { state } = useLocation();
   const navigate = useNavigate();
-
   const types = [
     "ITIK",
     "PORK",
@@ -22,18 +22,32 @@ const New = () => {
       </main>
     );
   } else {
+    function submit(e) {
+      e.preventDefault();
+      const formData = new FormData();
+      formData.append("name", document.getElementById("name").value);
+      formData.append("price", document.getElementById("price").value);
+      formData.append("type", document.getElementById("type").value);
+      formData.append("image", document.getElementById("image").files[0]);
+      const sendData = () => {
+        fetch("api/menu", {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${state.accessToken}`,
+          },
+          body: formData,
+        });
+      };
+      sendData();
+    }
     return (
       <main className=" bg-gray-800 h-[100vh] flex justify-center items-center">
-        <form
-          action="/api/menu"
-          method="POST"
-          className="w-[50%] flex flex-col gap-5"
-          enctype="multipart/form-data"
-        >
+        <form onSubmit={submit} className="w-[50%] flex flex-col gap-5">
           <Input
             variant="outlined"
             label="Name"
             name="name"
+            id="name"
             placeholder="Enter Food Name"
             color="white"
           />
@@ -41,12 +55,14 @@ const New = () => {
             variant="outlined"
             label="Price"
             name="price"
+            id="price"
             placeholder="Enter Food Price"
             color="white"
           />
           <div class="relative h-10 w-72 min-w-[200px]">
             <select
               name="type"
+              id="type"
               class="peer bg-black text-white h-full w-full rounded-[7px] border border-white border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-white-200 placeholder-shown:border-t-white-200 empty:!bg-gray-900 focus:border-2 focus:border-gray-200 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-white-50"
             >
               {types.map((item) => (
@@ -72,7 +88,7 @@ const New = () => {
               <span class="mt-2 text-base leading-normal">
                 Upload Food Image
               </span>
-              <input type="file" class="hidden" name="image" />
+              <input type="file" class="hidden" name="image" id="image" />
             </label>
           </div>
           <Button color="white" className="text-md mt-4" type="submit">

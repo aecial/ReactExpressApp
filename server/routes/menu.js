@@ -5,7 +5,10 @@ const menuController = require("../controllers/menuController");
 router
   .route("/")
   .get(menuController.getAllItems)
-  .post(menuController.uploadMiddleware, menuController.addItem);
+  .post(
+    [menuController.authenticateToken, menuController.uploadMiddleware],
+    menuController.addItem
+  );
 
 const foodRouter = require("./food");
 router.use("/food", foodRouter);

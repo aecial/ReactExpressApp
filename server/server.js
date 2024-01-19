@@ -37,7 +37,9 @@ app.post(
   [authenticateToken, upload.single("image")],
   (req, res) => {
     const { name } = req.body;
-    res.json({ message: name });
+    const file = req.file;
+    console.log(file.originalname);
+    res.json({ message: file.originalname });
   }
 );
 app.post("/api/login", async (req, res) => {
