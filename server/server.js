@@ -32,9 +32,14 @@ app.get("/api", (req, res) => {
 const menuRouter = require("./routes/menu");
 const prisma = require("./lib/PrismaProvider");
 app.use("/api/menu", menuRouter);
-app.post("/api/test", upload.single("image"), (req, res) => {
-  res.json({ message: "authenticated" });
-});
+app.post(
+  "/api/test",
+  [authenticateToken, upload.single("image")],
+  (req, res) => {
+    const { name } = req.body;
+    res.json({ message: name });
+  }
+);
 app.post("/api/login", async (req, res) => {
   const user = {
     email: req.body.email,
