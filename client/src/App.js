@@ -6,6 +6,7 @@ import Contact from "./pages/Contact";
 import New from "./pages/New";
 import Login from "./pages/Login";
 import Test from "./pages/Test";
+import NotFound from "./pages/NotFound";
 function App() {
   return (
     <>
@@ -17,6 +18,7 @@ function App() {
         <Route path="/new" element={<New />} />
         <Route path="/gate" element={<Login />} />
         <Route path="/test" element={<Test />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </>
   );
