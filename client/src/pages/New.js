@@ -1,9 +1,8 @@
 import { Button, Input } from "@material-tailwind/react";
-import { useState } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
+import Unauthorized from "../components/Unauthorized";
 const New = () => {
   const { state } = useLocation();
-  const navigate = useNavigate();
   const types = [
     "ITIK",
     "PORK",
@@ -15,13 +14,7 @@ const New = () => {
     "OTHERS",
   ];
   if (state === null || "" || undefined) {
-    return (
-      <main className=" bg-gray-800 text-white h-[100vh] flex flex-col gap-4 justify-center items-center">
-        <img src="https://http.cat/401.jpg" alt="Unauthorized Hero Image" />
-        <h1 className="text-4xl">UNAUTHORIZED</h1>
-        <Button onClick={() => navigate("/")}>GO BACK</Button>
-      </main>
-    );
+    return <Unauthorized />;
   } else {
     function submit(e) {
       e.preventDefault();

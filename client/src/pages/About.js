@@ -6,9 +6,6 @@ import HamburgerButtonBlock from "../components/HamburgerButtonBlock";
 const About = () => {
   return (
     <main className="min-h-screen bg-gray-800 p-4 flex flex-col justify-center items-center">
-      {/* <div className="h-10">
-        <DrawerWithNavigation hamburgerColor={"white"} />
-      </div> */}
       <HamburgerButtonBlock hamburgerColor={"white"} />
       <Typography variant="h2" className="uppercase" color="white">
         Gallery
