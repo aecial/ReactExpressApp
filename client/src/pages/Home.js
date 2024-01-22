@@ -1,5 +1,4 @@
 import { DrawerWithNavigation } from "../components/DrawerWithNavigation";
-import Title from "../components/Title";
 import { Button, Typography } from "@material-tailwind/react";
 import { useNavigate } from "react-router-dom";
 import ducky from "../assets/vectorDuck1.png";
@@ -32,16 +31,20 @@ function Home() {
             EATIK BOY
           </Typography>
           <div className="w-full">
-            <ul className="text-lg flex flex-col gap-5 w-[45%] mx-auto">
+            <ul className="text-lg flex flex-col lg:flex-row w-[45%] lg:w-[70%] lg:justify-center gap-4 lg:gap-8 lg:divide-x-2 mx-auto">
               <li>
-                <Typography variant="h6" color="white">
+                <Typography variant="h6" color="white" className="lg:text-2xl">
                   <i className="fa-solid fa-location-dot"></i> Santa Lucia,
                   Capas, Tarlac, 2315
                 </Typography>
               </li>
               <li>
                 <a href="tel:09982409945">
-                  <Typography variant="h6" color="white">
+                  <Typography
+                    variant="h6"
+                    color="white"
+                    className="lg:text-2xl lg:ml-4"
+                  >
                     <i className="fa-solid fa-phone-volume"></i>{" "}
                     <span className="underline underline-offset-2">
                       09982409945
@@ -51,7 +54,11 @@ function Home() {
               </li>
               <li>
                 <a href="https://www.facebook.com">
-                  <Typography variant="h6" color="white">
+                  <Typography
+                    variant="h6"
+                    color="white"
+                    className="lg:text-2xl lg:ml-4"
+                  >
                     <i className="fa-brands fa-facebook"></i>{" "}
                     <span className="underline underline-offset-2">
                       @eatikboy
