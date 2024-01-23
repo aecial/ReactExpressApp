@@ -8,8 +8,9 @@ router
   .post(
     [menuController.authenticateToken, menuController.uploadMiddleware],
     menuController.addItem
-  );
-
+  )
+  .put(menuController.authenticateToken, menuController.updateItem)
+  .delete(menuController.authenticateToken, menuController.deleteItem);
 const foodRouter = require("./food");
 router.use("/food", foodRouter);
 

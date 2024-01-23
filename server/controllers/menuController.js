@@ -39,6 +39,12 @@ const addItem = async (req, res) => {
     res.json(error);
   }
 };
+const updateItem = async (req, res) => {
+  res.json({ message: "Update Item" });
+};
+const deleteItem = async (req, res) => {
+  res.json({ message: "Delete Item" });
+};
 const authenticateToken = (req, res, next) => {
   const authHeader = req.headers["authorization"];
   const token = authHeader && authHeader.split(" ")[1];
@@ -55,4 +61,6 @@ module.exports = {
   addItem,
   uploadMiddleware,
   authenticateToken,
+  updateItem,
+  deleteItem,
 };
