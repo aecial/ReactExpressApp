@@ -3,16 +3,18 @@ const Test = () => {
     const fileInp = document.getElementById("image");
     const formData = new FormData();
     formData.append("name", "Ted");
-    formData.append("image", fileInp.files[0]);
+    // formData.append("image", fileInp.files[0]);
     const send = () => {
-      fetch("api/test", {
-        method: "POST",
-        headers: {
-          Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsInBhc3N3b3JkIjoicGFzczEyMzQiLCJpYXQiOjE3MDU2MzUyMjd9.neKV9CQaPn4a4LtqM9GOkBwG0Lfam6ive8Y0cW9IZpo",
-        },
+      fetch("api/menu", {
+        method: "DELETE",
+        // headers: {
+        //   Authorization:
+        //     "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsInBhc3N3b3JkIjoicGFzczEyMzQiLCJpYXQiOjE3MDU2MzUyMjd9.neKV9CQaPn4a4LtqM9GOkBwG0Lfam6ive8Y0cW9IZpo",
+        // },
         body: formData,
-      });
+      })
+        .then((response) => response.json())
+        .then((data) => alert(data.message));
     };
     send();
   }
