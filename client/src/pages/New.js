@@ -16,7 +16,7 @@ const New = () => {
   if (state === null || "" || undefined) {
     return <Unauthorized />;
   } else {
-    function submit(e) {
+    function addItem(e) {
       e.preventDefault();
       const formData = new FormData();
       formData.append("name", document.getElementById("name").value);
@@ -36,7 +36,7 @@ const New = () => {
     }
     return (
       <main className=" bg-gray-800 h-[100vh] flex justify-center items-center">
-        <form onSubmit={submit} className="w-[50%] flex flex-col gap-5">
+        <form onSubmit={addItem} className="w-[50%] flex flex-col gap-5">
           <Input
             variant="outlined"
             label="Name"
