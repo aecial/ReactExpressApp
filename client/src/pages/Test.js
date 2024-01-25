@@ -1,10 +1,11 @@
 const Test = () => {
   function sendData() {
     const id = document.querySelector("#itemId").value;
+    const newPrice = document.querySelector("#itemPrice").value;
     // const fileInp = document.getElementById("image");
     // formData.append("image", fileInp.files[0]);
     const send = () => {
-      fetch(`api/menu/${id}`, {
+      fetch(`api/menu/${id}/${newPrice}`, {
         method: "PUT",
         // headers: {
         //   Authorization:
@@ -13,7 +14,7 @@ const Test = () => {
         // body: formData,
       })
         .then((response) => response.json())
-        .then((data) => alert(data.message.name));
+        .then((data) => alert(data.message));
     };
     send();
   }
@@ -21,6 +22,12 @@ const Test = () => {
     <main className="h-screen bg-gray-800 text-white">
       {/* <input type="file" name="image" id="image" /> */}
       <input type="number" name="itemId" id="itemId" className="text-black" />
+      <input
+        type="number"
+        name="itemPrice"
+        id="itemPrice"
+        className="text-black"
+      />
       <button onClick={sendData}>SEND</button>
     </main>
   );

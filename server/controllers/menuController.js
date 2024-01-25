@@ -41,12 +41,24 @@ const addItem = async (req, res) => {
 };
 const updateItem = async (req, res) => {
   const id = req.params.id;
-  const item = await prisma.menu.findUnique({
+  const newPrice = req.params.price;
+
+  const referenceItem = await prisma.menu.findUnique({
     where: {
       id: Number(id),
     },
   });
-  res.json({ message: item });
+  const item = await prisma.menu.update({
+    data: {
+      price: Number(newPrice),
+    },
+    where: {
+      id: Number(id),
+    },
+  });
+  res.json({
+    message: `Successfully Updated Price of ${item.name} from ${referenceItem.price} to ${newPrice}`,
+  });
 };
 const deleteItem = async (req, res) => {
   res.json({ message: "Delete Item" });

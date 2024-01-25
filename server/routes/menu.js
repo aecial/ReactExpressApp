@@ -10,7 +10,7 @@ router
     menuController.addItem
   );
 router
-  .route("/:id")
+  .route("/:id/:price")
   .put(menuController.updateItem)
   .delete(menuController.deleteItem);
 const foodRouter = require("./food");
