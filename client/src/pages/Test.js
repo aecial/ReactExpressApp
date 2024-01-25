@@ -1,26 +1,26 @@
 const Test = () => {
   function sendData() {
-    const fileInp = document.getElementById("image");
-    const formData = new FormData();
-    formData.append("name", "Ted");
+    const id = document.querySelector("#itemId").value;
+    // const fileInp = document.getElementById("image");
     // formData.append("image", fileInp.files[0]);
     const send = () => {
-      fetch("api/menu", {
-        method: "DELETE",
+      fetch(`api/menu/${id}`, {
+        method: "PUT",
         // headers: {
         //   Authorization:
         //     "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsInBhc3N3b3JkIjoicGFzczEyMzQiLCJpYXQiOjE3MDU2MzUyMjd9.neKV9CQaPn4a4LtqM9GOkBwG0Lfam6ive8Y0cW9IZpo",
         // },
-        body: formData,
+        // body: formData,
       })
         .then((response) => response.json())
-        .then((data) => alert(data.message));
+        .then((data) => alert(data.message.name));
     };
     send();
   }
   return (
     <main className="h-screen bg-gray-800 text-white">
-      <input type="file" name="image" id="image" />
+      {/* <input type="file" name="image" id="image" /> */}
+      <input type="number" name="itemId" id="itemId" className="text-black" />
       <button onClick={sendData}>SEND</button>
     </main>
   );

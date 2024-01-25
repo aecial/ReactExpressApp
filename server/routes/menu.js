@@ -8,7 +8,9 @@ router
   .post(
     [menuController.authenticateToken, menuController.uploadMiddleware],
     menuController.addItem
-  )
+  );
+router
+  .route("/:id")
   .put(menuController.updateItem)
   .delete(menuController.deleteItem);
 const foodRouter = require("./food");

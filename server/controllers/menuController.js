@@ -40,7 +40,13 @@ const addItem = async (req, res) => {
   }
 };
 const updateItem = async (req, res) => {
-  res.json({ message: "Update Item" });
+  const id = req.params.id;
+  const item = await prisma.menu.findUnique({
+    where: {
+      id: Number(id),
+    },
+  });
+  res.json({ message: item });
 };
 const deleteItem = async (req, res) => {
   res.json({ message: "Delete Item" });
