@@ -11,8 +11,8 @@ router
   );
 router
   .route("/:id/:price")
-  .put(menuController.updateItem)
-  .delete(menuController.deleteItem);
+  .put(menuController.authenticateToken, menuController.updateItem)
+  .delete(menuController.authenticateToken, menuController.deleteItem);
 const foodRouter = require("./food");
 router.use("/food", foodRouter);
 

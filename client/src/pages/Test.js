@@ -7,10 +7,10 @@ const Test = () => {
     const send = () => {
       fetch(`api/menu/${id}/${newPrice}`, {
         method: "PUT",
-        // headers: {
-        //   Authorization:
-        //     "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsInBhc3N3b3JkIjoicGFzczEyMzQiLCJpYXQiOjE3MDU2MzUyMjd9.neKV9CQaPn4a4LtqM9GOkBwG0Lfam6ive8Y0cW9IZpo",
-        // },
+        headers: {
+          Authorization:
+            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsInBhc3N3b3JkIjoicGFzczEyMzQiLCJpYXQiOjE3MDU2MzUyMjd9.neKV9CQaPn4a4LtqM9GOkBwG0Lfam6ive8Y0cW9IZpo",
+        },
         // body: formData,
       })
         .then((response) => response.json())

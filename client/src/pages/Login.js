@@ -18,16 +18,16 @@ const Login = () => {
       );
   }
   return (
-    <main className="h-screen flex justify-center items-center bg-gray-800  text-white">
-      <div className="">
-        <div class="relative flex flex-col text-white bg-transparent shadow-none rounded-xl bg-clip-border border-2 border-white p-10">
+    <main className="h-screen w-screen flex justify-center items-center bg-gray-800  text-white">
+      <div className="w-screen">
+        <div class="relative flex flex-col text-white bg-transparent shadow-none rounded-xl bg-clip-border lg:border-2 lg:border-white p-10">
           <h4 class="block font-sans text-center text-2xl antialiased font-semibold leading-snug tracking-normal text-white">
             LOGIN
           </h4>
           <form
             onSubmit={handleSubmit}
             method="POST"
-            class="max-w-screen-lg mt-8 mb-2 w-80 sm:w-96"
+            class="w-auto mt-8 mb-2 sm:w-96"
           >
             <div class="flex flex-col gap-6 mb-1">
               <h6 class="block -mb-3 font-sans text-base antialiased font-semibold leading-relaxed tracking-normal text-white">
