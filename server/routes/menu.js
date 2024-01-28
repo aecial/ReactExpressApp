@@ -10,9 +10,11 @@ router
     menuController.addItem
   );
 router
-  .route("/:id/:price")
-  .put(menuController.authenticateToken, menuController.updateItem)
+  .route("/:id")
   .delete(menuController.authenticateToken, menuController.deleteItem);
+router
+  .route("/:id/:price")
+  .put(menuController.authenticateToken, menuController.updateItem);
 const foodRouter = require("./food");
 router.use("/food", foodRouter);
 

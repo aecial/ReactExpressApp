@@ -29,8 +29,8 @@ const AddItemForm = ({ state }) => {
     sendData();
   }
   return (
-    <main className=" bg-gray-800 h-[100vh] flex justify-center items-center">
-      <form onSubmit={addItem} className="w-[50%] flex flex-col gap-5">
+    <div className=" bg-gray-800 flex justify-center items-center">
+      <form onSubmit={addItem} className=" flex flex-col gap-5">
         <Input
           variant="outlined"
           label="Name"
@@ -81,7 +81,7 @@ const AddItemForm = ({ state }) => {
           Submit
         </Button>
       </form>
-    </main>
+    </div>
   );
 };
 

@@ -61,7 +61,19 @@ const updateItem = async (req, res) => {
   });
 };
 const deleteItem = async (req, res) => {
-  res.json({ message: "Delete Item" });
+  const id = req.params.id;
+  try {
+    const removeItem = await prisma.menu.delete({
+      where: {
+        id: Number(id),
+      },
+    });
+    res.json({
+      message: `Successfully Removed ${removeItem.name} from the menu`,
+    });
+  } catch (error) {
+    res.json({ message: "Item Does Not Exist" });
+  }
 };
 const authenticateToken = (req, res, next) => {
   const authHeader = req.headers["authorization"];
