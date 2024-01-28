@@ -19,7 +19,7 @@ const Login = () => {
   }
   return (
     <main className="h-screen w-screen flex justify-center items-center bg-gray-800  text-white">
-      <div className="w-screen">
+      <div className="w-screen lg:w-auto">
         <div class="relative flex flex-col text-white bg-transparent shadow-none rounded-xl bg-clip-border lg:border-2 lg:border-white p-10">
           <h4 class="block font-sans text-center text-2xl antialiased font-semibold leading-snug tracking-normal text-white">
             LOGIN

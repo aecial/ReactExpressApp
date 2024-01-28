@@ -13,7 +13,7 @@ const New = () => {
   } else {
     return (
       <main className="bg-gray-800 h-screen flex flex-col justify-center items-center">
-        <div className="w-full px-2 flex gap-4 lg:gap-8">
+        <div className="w-full px-2 flex gap-4 lg:gap-8 justify-center items-center">
           <Button color="white" onClick={() => setLayout("add")}>
             Add
           </Button>
