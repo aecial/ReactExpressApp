@@ -10,7 +10,6 @@ const UpdateItemForm = ({ state }) => {
         headers: {
           Authorization: `Bearer ${state.accessToken}`,
         },
-        // body: formData,
       })
         .then((response) => response.json())
         .then((data) => alert(data.message))

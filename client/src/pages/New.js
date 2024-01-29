@@ -37,7 +37,6 @@ const New = () => {
         </div>
       </main>
     );
-    // return <AddItemForm state={state} />;
   }
 };
 

@@ -33,9 +33,8 @@ const addItem = async (req, res) => {
         image: editedImage,
       },
     });
-    res.json({ message: `Successfully Added ${name}` });
+    res.json({ message: `Successfully Added ${name} to the menu` });
   } catch (error) {
-    // res.sendStatus(500);
     res.json(error);
   }
 };

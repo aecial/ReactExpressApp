@@ -24,7 +24,10 @@ const AddItemForm = ({ state }) => {
           Authorization: `Bearer ${state.accessToken}`,
         },
         body: formData,
-      });
+      })
+        .then((response) => response.json())
+        .then((data) => alert(data.message))
+        .catch((error) => alert(error));
     };
     sendData();
   }
