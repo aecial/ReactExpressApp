@@ -21,7 +21,9 @@ function Home() {
               src={ducky}
               alt="LOGO"
               className=" object-cover w-full h-full"
-              onDoubleClick={() => navigate("/gate")}
+              onDoubleClick={() =>
+                navigate("/gate", { state: { accessToken: "passed" } })
+              }
             />
           </div>
         </div>
