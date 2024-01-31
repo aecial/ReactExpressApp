@@ -5,10 +5,10 @@ import ducky from "../assets/vectorDuck1.png";
 function Home() {
   const navigate = useNavigate();
   return (
-    <main className="bg-gray-800 min-h-screen">
-      <div className="h-full bg-gray-800">
+    <main className="bg-black h-[100vh] overflow-hidden">
+      <div>
         {/* HEADER */}
-        <div className="bg-gray-800">
+        <div className="bg">
           <div className="h-[25vh] bg-blue-400 overflow-hidden">
             <img
               className="h-full w-full object-cover"
@@ -16,7 +16,7 @@ function Home() {
               alt="hero wallpaper"
             />
           </div>
-          <div className="bg-red-500 overflow-hidden rounded-full w-40 h-40 mx-auto relative -top-20 border-2 border-black shadow-md">
+          <div className="bg-red-500 overflow-hidden rounded-full w-40 h-40 mx-auto relative lg:-top-20 -top-24 border-2 border-black shadow-md">
             <img
               src={ducky}
               alt="LOGO"
@@ -28,14 +28,14 @@ function Home() {
           </div>
         </div>
         {/* HEADER */}
-        <div className="h-[47vh] bg-gray-800 -mt-12 flex flex-col justify-between">
-          <Typography variant="h1" className="text-center" color="white">
+        <div className="h-[47vh] bg -mt-20 flex flex-col justify-between">
+          <Typography variant="h1" className="text-center" color="yellow">
             EATIK BOY
           </Typography>
           <div className="w-full">
             <ul className="text-lg flex flex-col lg:flex-row w-[45%] lg:w-[70%] lg:justify-center gap-4 lg:gap-8 lg:divide-x-2 mx-auto">
               <li>
-                <Typography variant="h6" color="white" className="lg:text-2xl">
+                <Typography variant="h5" color="white" className="lg:text-2xl">
                   <i className="fa-solid fa-location-dot"></i> Santa Lucia,
                   Capas, Tarlac, 2315
                 </Typography>
@@ -43,7 +43,7 @@ function Home() {
               <li>
                 <a href="tel:09982409945">
                   <Typography
-                    variant="h6"
+                    variant="h5"
                     color="white"
                     className="lg:text-2xl lg:ml-4"
                   >
@@ -57,7 +57,7 @@ function Home() {
               <li>
                 <a href="https://www.facebook.com">
                   <Typography
-                    variant="h6"
+                    variant="h5"
                     color="white"
                     className="lg:text-2xl lg:ml-4"
                   >
@@ -71,8 +71,8 @@ function Home() {
             </ul>
           </div>
           <Button
-            className="w-[80%] mx-auto text-2xl"
-            color="white"
+            className="w-[80%] lg:w-[20%] mx-auto text-2xl"
+            color="red"
             onClick={() => navigate("/order")}
           >
             <i className="fa-solid fa-basket-shopping"></i> ORDER NOW
