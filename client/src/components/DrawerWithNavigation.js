@@ -25,9 +25,14 @@ export function DrawerWithNavigation({ hamburgerColor }) {
         className="absolute top-2 right-3"
         variant={hamburgerColor}
       />
-      <Drawer placement="right" open={open} onClose={closeDrawer}>
-        <div className="mb-2 flex items-center justify-between p-4">
-          <Typography variant="h5" color="blue-gray">
+      <Drawer
+        placement="right"
+        open={open}
+        onClose={closeDrawer}
+        className="bg-black border-white border-l"
+      >
+        <div className="mb-2 flex items-center justify-between p-4 bg-gray-800 ">
+          <Typography variant="h5" color="yellow">
             EATIK BOY
           </Typography>
           <IconButton variant="text" color="blue-gray" onClick={closeDrawer}>
@@ -37,7 +42,7 @@ export function DrawerWithNavigation({ hamburgerColor }) {
               viewBox="0 0 24 24"
               strokeWidth={2}
               stroke="currentColor"
-              className="h-5 w-5"
+              className="h-5 w-5 text-yellow-400"
             >
               <path
                 strokeLinecap="round"
@@ -51,17 +56,17 @@ export function DrawerWithNavigation({ hamburgerColor }) {
           <Link to="/">
             <ListItem>
               <ListItemPrefix>
-                <i className="fa-solid fa-house-chimney"></i>
+                <i className="fa-solid fa-house-chimney text-red-400"></i>
               </ListItemPrefix>
-              Home
+              <span className="text-red-400">Home</span>
             </ListItem>
           </Link>
           <Link to="/about">
             <ListItem>
               <ListItemPrefix>
-                <i class="fa-solid fa-images"></i>
+                <i class="fa-solid fa-images text-red-400"></i>
               </ListItemPrefix>
-              Gallery & Reviews
+              <span className="text-red-400">Gallery & Reviews</span>
               {/* <ListItemSuffix>
                   <Chip
                     value="5"
@@ -76,14 +81,14 @@ export function DrawerWithNavigation({ hamburgerColor }) {
           <Link to="/contact">
             <ListItem>
               <ListItemPrefix>
-                <i className="fa-solid fa-phone-volume"></i>
+                <i className="fa-solid fa-phone-volume text-red-400"></i>
               </ListItemPrefix>
-              Contact Us
+              <span className="text-red-400">Contact Us</span>
             </ListItem>
           </Link>
         </List>
         <Link to="/order">
-          <Button className="mt-3 ml-5 w-[87%]" size="lg">
+          <Button className="mt-3 ml-5 w-[87%]" size="lg" color="yellow">
             ORDER NOW
           </Button>
         </Link>
