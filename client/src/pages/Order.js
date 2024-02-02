@@ -100,48 +100,63 @@ function Order() {
       .then((data) => {
         setBackEndData(data);
         setFoodTypes(data);
-      });
+      })
+      .catch((error) => console.log(error));
   }, []);
 
   return (
     <main className="min-h-[100vh] pb-5 bg-gradient-to-br from-black via-black to-gray-900">
       <HamburgerButtonBlock hamburgerColor={"white"} />
-      <div className="foodPillsDiv flex w-[100vw] overflow-x-scroll gap-4 px-3">
-        <FoodPills key={"all"} foodName={"All"} btnFunction={fetchMenu} />
-        {distinctTypes.map((item, index) => (
-          <FoodPills
-            key={index}
-            foodName={item}
-            btnFunction={() => changeData(item)}
-          />
-        ))}
-      </div>
-      <button
-        onClick={() => setIsOpen(true)}
-        className="fixed block top-24 right-4 w-10 h-10 bg-white rounded-md z-10 border border-black"
-      >
-        <i className="fa-solid fa-cart-shopping text-lg"></i>
-        {cartItem.length === 0 ? (
-          <span></span>
-        ) : (
-          <Badge
-            content={cartItem.reduce((count, item) => {
-              return count + item.qty;
-            }, 0)}
-            className="-mt-5 text-xs"
-          ></Badge>
-        )}
-      </button>
+      {backEndData.length > 1 ? (
+        <div className="foodPillsDiv flex w-[100vw] overflow-x-scroll gap-4 px-3">
+          <FoodPills key={"all"} foodName={"All"} btnFunction={fetchMenu} />
+          {distinctTypes.map((item, index) => (
+            <FoodPills
+              key={index}
+              foodName={item}
+              btnFunction={() => changeData(item)}
+            />
+          ))}
+        </div>
+      ) : (
+        <span></span>
+      )}
+      {backEndData.length > 1 ? (
+        <button
+          onClick={() => setIsOpen(true)}
+          className="fixed block top-24 right-4 w-10 h-10 bg-white rounded-md z-10 border border-black"
+        >
+          <i className="fa-solid fa-cart-shopping text-lg"></i>
+          {cartItem.length === 0 ? (
+            <span></span>
+          ) : (
+            <Badge
+              content={cartItem.reduce((count, item) => {
+                return count + item.qty;
+              }, 0)}
+              className="-mt-5 text-xs"
+            ></Badge>
+          )}
+        </button>
+      ) : (
+        <span></span>
+      )}
       <div className="mt-16 place-items-center min-h-[75vh] grid grid-cols-2 lg:grid-cols-5 gap-y-14 lg:gap-0 z-0">
-        {backEndData.map((item, index) => (
-          <MenuCard
-            key={index}
-            imgSrc={item.image}
-            title={item.name}
-            price={item.price}
-            btnFunc={() => addToCart(1, item.name, item.price)}
-          />
-        ))}
+        {backEndData.length > 1 ? (
+          backEndData.map((item, index) => (
+            <MenuCard
+              key={index}
+              imgSrc={item.image}
+              title={item.name}
+              price={item.price}
+              btnFunc={() => addToCart(1, item.name, item.price)}
+            />
+          ))
+        ) : (
+          <h1 className="text-red-700 underline text-center text-3xl">
+            No Back End Data
+          </h1>
+        )}
       </div>
       {isOpen ? (
         <div
