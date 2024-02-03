@@ -6,8 +6,8 @@ import { Badge, IconButton, Button } from "@material-tailwind/react";
 import FoodPills from "../components/FoodPills";
 import HamburgerButtonBlock from "../components/HamburgerButtonBlock";
 function Order() {
-  const [backEndData, setBackEndData] = useState([{}]);
-  const [foodTypes, setFoodTypes] = useState([{}]);
+  const [backEndData, setBackEndData] = useState([]);
+  const [foodTypes, setFoodTypes] = useState([]);
   const distinctTypes = [...new Set(foodTypes.map((data) => data.type))];
   const [isOpen, setIsOpen] = useState(false);
   const [cartItem, setCartItem] = useState([]);
@@ -107,7 +107,7 @@ function Order() {
   return (
     <main className="min-h-[100vh] pb-5 bg-gradient-to-br from-black via-black to-gray-900">
       <HamburgerButtonBlock hamburgerColor={"white"} />
-      {backEndData.length > 1 ? (
+      {backEndData.length > 0 ? (
         <div className="foodPillsDiv flex w-[100vw] overflow-x-scroll gap-4 px-3">
           <FoodPills key={"all"} foodName={"All"} btnFunction={fetchMenu} />
           {distinctTypes.map((item, index) => (
@@ -121,7 +121,7 @@ function Order() {
       ) : (
         <span></span>
       )}
-      {backEndData.length > 1 ? (
+      {backEndData.length > 0 ? (
         <button
           onClick={() => setIsOpen(true)}
           className="fixed block top-24 right-4 w-10 h-10 bg-white rounded-md z-10 border border-black"
@@ -142,7 +142,7 @@ function Order() {
         <span></span>
       )}
       <div className="mt-16 place-items-center min-h-[75vh] grid grid-cols-2 lg:grid-cols-5 gap-y-14 lg:gap-0 z-0">
-        {backEndData.length > 1 ? (
+        {backEndData.length > 0 ? (
           backEndData.map((item, index) => (
             <MenuCard
               key={index}
